@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<body>
+	
+		<script type="text/javascript">
+			var oldhash = '';
+			var timeInterval = setInterval(function(){
+			
+				var hash = window.location.hash.substring(1);
+				//console.log("get")
+				if(hash && hash !== oldhash){
+					try{
+						oldhash = hash
+						//clearInterval(timeInterval);
+						//console.log(hash)
+						window.top.setIframeHeight && window.top.setIframeHeight(hash);
+						}catch(e){
+							clearInterval(timeInterval);
+						}
+					
+					
+				}
+			},100)
+		</script>
+	</body>
+</html>
+
+

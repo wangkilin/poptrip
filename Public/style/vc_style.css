@@ -1,0 +1,283 @@
+* { margin: 0; padding: 0; font-size: 12px;}
+/*================================= GREY DIV ======================================*/
+
+.table_boder {background:#2f353d;}
+
+.popUpOuterMask {position:fixed;top:0;left:0;width:100%;height:100%;opacity:0.8;z-index:1000;background: #000000 url(../img/ajax-loader.svg) no-repeat center 50%;background-size:45%;font-size: 200%;}
+.popUpOuterMask span {position:fixed;top:50%;width:100%;text-align:center;color:white;font-weight: bold;}
+
+html {background:#f9f9f9;width: 100%;height: 100%}
+body{color:#333;font-size:13px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;margin-top:0; }
+.textareaDisable{color:#999999;font-size:13px;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;}
+button,input,select,textarea,td {font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;}
+h1,h2,h3,h4,h5,h6,pre,code{font-size:13px;/*font-weight:normal;*/}
+a:link{color:#0000ff;text-decoration: underline;}
+a:hover{color:#6598c9;}
+li{ list-style:none;}
+ul,li,p,h1,h2,h3,h4,h5,h6,pre,code{ padding:0; margin:0; border:0;}
+hr{ visibility: hidden; clear: both; }
+fieldset{margin: 6px; padding: 3px 5px; border-radius: 4px;}
+legend{font-size: 13px;font-weight: bold;margin: 0 10px;padding: 3px 5px;}
+
+#wrapper{ width:95%; margin:0 auto; padding:0; background:#FFF; text-align:left;}
+
+.headArea{height:44px;background:#2f353d;}
+.headArea img {margin-left:20px;margin-top:7px;}
+label{ float: left; margin: 0 5px 0 0; text-align: right; width: 140px; }
+textarea { height:180px; }
+.table .header td { background: url("../img/list_bar_normal.png") repeat scroll -1px -1px transparent;}
+.autoWidth {width: auto;}
+.longInput500, .width500 { width:500px; }
+.width200 { width:200px; }
+th { background: url("../img/list_bar_normal.png") repeat scroll -1px -1px transparent; border-bottom: 1px solid #999999; border-left: 1px solid #999999; color: #486804; font-size: 12px; font-weight: bold; line-height: 18px; padding: 3px 10px; }
+.evenLine{ background-color: #F5F5E5;}
+.list .table { border-radius: 3px 3px 0 0; }
+.editIcon { margin:0 3px; }
+.deleteIcon { margin:0 3px; }
+.itemOperation { width:80px; }
+.itemIndex { width:40px; }
+#Message { background: url("ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png") repeat-x scroll 50% top #FFE45C; border: 1px solid #FED22F; color: #363636; height:30px; padding:10px 0 0; margin: 10px 0; }
+#Message .ui-icon { background-image: url("ui-lightness/images/ui-icons_228ef1_256x240.png"); }
+#ErrorMessage .ui-icon { background-image: url("ui-lightness/images/ui-icons_ffd27a_256x240.png"); }
+#ErrorMessage { background: url("ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png") repeat-x scroll 50% top #FFE45C; border: 1px solid #FED22F; color: #363636; height:30px; padding:10px 0 0 ; margin: 10px 0; }
+.topButtonOnMain { float:right; border:1px solid #999999; cursor: pointer; color: #1C94C4; font-weight: bold; height: 24px; line-height: 24px; margin: 0 20px 0px; padding: 0 10px; background: url("../img/list_bar_normal.png") repeat scroll -1px -1px transparent; border-bottom:0; border-radius: 3px 3px 0 0; }
+.logout { float: right; }
+.currentLink, .currentLink a { text-decoration: underline; color: #333; }
+.adminLogo { /*padding-bottom: 10px;*/ background:#2f353d; height:44px;}
+.adminLogo div {float:left;width:95%;}
+.adminLogo div img {margin-left:20px;margin-top:7px;}
+.adminLogo .logout {float:right;width:4.9%;}
+.logout a {display:block;line-height:44px;color:#eee;text-align:center;text-decoration:none;}
+.logout a:hover {background:#3d444e;}
+
+
+
+.adminLink{ background-color: #f4f4f4; height:44px; }
+.adminLink span {}
+.adminLink a{ display:inline-block;padding:0 15px;color: #333; font-size: 14px;font-weight:bold;text-decoration:none;line-height:44px;}
+.adminLink a:hover {background:#e3e6e8;}
+
+.adminLink .currentLink a {background:#ffe25f;}
+
+
+.adminHeader { width:100%; }
+#mainContent { margin: 30px auto; width: 98%; }
+.itemsList { border:1px solid #999999; width:100%; }
+.linkType { width:100px; }
+.blurLevel { color:#B5B5B5; }
+
+.msgTooLatePretty span { background-color: #FFE45C; border: 1px solid #FED22F; color: #363636; padding:5px; float: left;width:98%;margin-left:10px}
+
+.classLevel{ float:left;height:24px; padding-top:10px;}
+.classLevel ul{ padding-left:25px;}
+.classLevel li{ float:left; padding-right:10px; height:20px; line-height:20px;}
+.classLevel li.selectLevel select{ height:20px; width:280px; font-size:11px; border:1px solid #6598C9;}
+.classLevel li.infoBtn a{ display:inline-block; width:17px; height:17px; background-image:url(../img/bg_icon.png); margin-top:3px;}
+.classLevel li.infoBtn a:hover{ background-position:left -17px;}
+.classLevel li.infoBtn a#infoBtnNormal{ background-position:left top;}
+.classLevel li.infoBtn a#infoBtnHover{ background-position:left -17px;}
+/*list*/
+.Classes{ float:left;width:100%}
+.list{padding-left: 5px;padding-right: 5px;/*width:100%;/*min-width:750px;*/}
+.list .table{width:100%;border:solid 1px #999; }
+.list .table td{line-height:18px;vertical-align:top; padding:3px 10px; border-bottom:1px solid #D9F07C; border-left:1px solid #ebebeb;font-size:12px; color:#000; text-align:left;width:14%;}
+.list .table td, .list .table td div {max-height: 55px;overflow: hidden;}
+.list .table tr:hover td, .list .table tr:hover td div {overflow: visible;max-height: 30000px;}
+.list .table td input{cursor:pointer;margin-top:5px;}
+*+html .list .table td input {margin-top:2px;}
+.list .table td img {margin-top:3px;}
+.list .header td{ background:url(../img/list_bar_normal.png)-1px -1px; border-bottom:1px solid #999; border-left:1px solid #999; color:#486804; font-weight:bold; font-size:12px;}
+.table .header td {background: url("../img/list_bar_normal.png") repeat scroll -1px -1px transparent;}
+.list .header td span{ float:right; font-weight:normal;}
+.list td.left{ border-left:none; width:38px; text-align:center;}
+.list td.current{ background-color:#c4d81f;}
+.list .bottomRow td{ border-bottom:none;}
+.list .summary{padding:10px 0 10px 2px;width:400px;float:left;}
+.filterForm{float: left;}
+.filterFormSubmit{margin:auto 15px;}
+.sceneryImgListStyle{max-width:100px;}
+tr:hover .sceneryImgListStyle{max-width:1000px;}
+
+.paginator {padding:5px;float:right;margin-right: 25px;}
+.pager .prevPageEnabled, .pager .nextPageEnabled{display:inline-block;width:18px;height:15px;vertical-align:middle;}
+.pager .prevPageEnabled{background:url('../img/prev_enabled.png') center center;margin:0 7px 0 0;cursor:pointer;}
+.pager .nextPageEnabled{background:url('../img/next_enabled.png') center center;margin:0 0 0 7px;cursor:pointer;}
+.pager a{cursor:pointer;margin:0 5px;vertical-align:middle;}
+.pager .currentPageIndex{float:none;cursor:default;margin:0 3px;vertical-align:middle;}
+
+/*netSpeedIntroArea*/
+.netSpeedIntroArea {display:none; position:absolute;width:530px;z-index:100;font-size:11px;}
+.netSpeedIntroArea li {background:url(../img/disc.png) no-repeat left 8px; padding-left:15px;height:auto;width:90%;}
+.netSpeedIntroArea .netSpeedIntroTop {padding:23px 15px 15px 15px;background:url(../img/instructionBigTop.png) no-repeat;width:500px;}
+.netSpeedIntroArea .netSpeedIntroTop .netSpeedClose {float:right;margin-top:-5px;padding-right:5px;}
+.netSpeedIntroArea .netSpeedIntroTop .netSpeedClose a {display:block;width:15px;height:15px;background:url(../img/buble_click_normal.png) no-repeat;}
+.netSpeedIntroArea .netSpeedIntroTop .netSpeedClose a:hover {background:url(../img/buble_click_hover.png) no-repeat;}
+.netSpeedIntroArea .netSpeedIntroTop .introTitle {padding-bottom:3px;font-weight:bold;font-size:12px;}
+.netSpeedIntroArea .netSpeedIntroTop .introContent {line-height:15px;}
+.netSpeedIntroArea .netSpeedIntroTop .introContent li {line-height:15px;}
+.netSpeedIntroArea .netSpeedIntroBottom {width:530px;height:10px;background:url(../img/instructionBigBottom.png) left top no-repeat;overflow:hidden;}
+
+
+.myClassCon:after,.classObj:after,.netSpeedIntroTop:after {clear:both;display:block;visibility:hidden;height:0;line-height:0;content:"";}
+.wraper {width:990px;margin:0 auto;text-align:left;background:#fff;}
+.breadcrumb {padding-top: 5px;padding-left:12px;padding-bottom:5px;font-size:13px;}
+.breadcrumb span {font-weight:bold;color:#002468;} 
+.myClass .myClassTitle {padding-left:20px;padding-bottom:10px;font-weight:lighter;font-size:24px;color:#333;}
+.myClassCon {margin-left:10px;background:url(../img/Blue_zone.png);width:630px;min-height:84px;}
+.myClassBottom {margin-left:10px;overflow:hidden;background:url(../img/Blue_zone_bottom.png) left bottom no-repeat;height:10px;}
+.msgToolate{color:red;float:left;width: 220px;margin-top: 20px;}
+.myClassCon .myClassPic {position:relative;display:inline;float:left;margin:13px 10px 0 26px;width:75px;height:75px;background:url(../img/ico.jpg) no-repeat;}
+.myClassCon .myClassPic .mask {position:absolute;top:0;left:0;background:url(../img/maskRound.png) no-repeat;width:75px;height:75px;}
+.myClassCon .myClassText {float:left;width:250px;color:#fff;}
+.myClassCon .myClassText dt {padding-top:20px;padding-bottom:20px;font-size:14px;font-weight:bold;}
+.myClassCon .startClass {float:left;padding-top:53px;width:250px;}
+.myClassCon .startClass a {display:block;width:250px;height:30px;background:url(../img/continue.png) no-repeat;text-decoration:none;color:#486804;line-height:30px; border-radius: 2px;}
+.myClassCon .startClass a span {padding-left:10px;}
+.myClassCon .startClass a.disable {background:url(../img/continue_disable.png) no-repeat;color:#999;cursor:default;}
+
+.saveToCalendarMsg{color:grey}
+
+
+/*for IE6*/
+.install {padding:10px 20px;text-align: center;border:1px solid;}
+.classObj {margin-left:10px;border:1px solid #d8d8d8;background:#edf8ff;margin-top:5px;}
+.classObjTitle {padding-left:10px;background:url(../img/GreenZone_title.png) repeat-x;height:33px;line-height:33px;border-bottom:1px solid #d8d8d8;color:#486804;font-size:17px;}
+.levelTextLeft {float:left;width:260px;}
+.levelTextRight {float:left;padding-left:20px;width:660px;}
+.levelTextLeft .levelTitle {padding:10px 0 0 20px;font-weight:bold;color:#486804;}
+.levelTextLeft dl {border-right:1px solid #ccc;padding-left:20px;margin-bottom:20px;}
+.levelTextLeft dt {color:#486804;margin-top:15px;padding-bottom:5px;}
+.levelTextLeft .listen, 
+.levelTextLeft .oral{padding:5px 0 5px 40px;background:url(../img/ico_listen.png) 11px 3px no-repeat;font-size:11px;}
+.levelTextLeft .oral{background:url(../img/ico_hear.png) 13px 3px no-repeat;}
+.levelTextLeft .ressource span{display:inline-block;background:url(../img/ico_book.png) right no-repeat;width:20px;height:20px;vertical-align:middle;}
+.levelTextLeft .ressource {padding-left:14px;color:#2e6498;}
+.levelTextLeft .ressource a {font-size:11px;}
+.levelTextRight dl {padding-top:40px;}
+.levelTextRight dt {color:#486804;padding-bottom:5px;}
+.levelTextRight dd {padding-left:15px;padding-bottom:3px;font-size:12px;}
+.levelTextRight .arr {padding-left:35px;background:url(../img/Chip_ArrowIe6.png) 23px 3px no-repeat;}
+.survery {padding:10px 20px;}
+
+.BOXHEAD {background: none repeat scroll 0 0 #BFD122;color: #00345F;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;font-size: 10pt;font-weight: bold;margin-left: 0;padding: 0 0 0 5px;width: 100%;}
+.BOX {background: none repeat scroll 0 0 #F5F5F5;border-color: #BFD122;border-style: solid;border-width: 1px;color: #00345F;font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;font-size: 10pt;}
+.BOX ul{margin-left: 10px;}
+.BOX li, .levelDesc li{margin: 5px 5px 5px 15px;list-style: disc outside none;}
+.TOPHEADER {background: none repeat scroll 0 0 #FFFFFF;height: 50px;}
+
+.newTopicIcon{margin:0 8px;color: #9aab09;}
+
+.blurLevel {color: #7F7F7F;}
+
+
+/*********************************************** SCHEDULE SECTION *******************************************************************/
+.mainTitle { top:2%;left:35%;height:30px;font-weight:bold;}
+.mainTitle span{ float:left;border-right:1px solid #eee;font-size: 20px;height: 17px;line-height: 17px;padding-left: 10px;padding-right: 10px;}
+
+.mainTitlePupil { position:relative;top:2%;left:0%;bottom:0%;height:30px;font-weight:bold;padding-left:10px;padding-bottom:10px;}
+.mainTitlePupil span{ float:left;border-right:1px solid #ccc;color: #333;font-size:24px;font-weight:lighter;padding:0 10px;}
+
+
+
+.selectors{clear:both;float:left;padding:25px 0 0;width:100%}
+.timezoneSelection {padding:5px;float:left;font-size: 15px;}
+.timezoneSelection span {float:left; margin-left:15px;}
+.levelSelection {padding:5px;float:left;font-size: 15px;}
+.levelSelection span {float:left; margin-left:15px;}
+.tutorSelection {padding:5px;float:left;font-size: 15px;}
+.tutorSelection span {float:left; margin-left:15px;}
+/*.classroomSchedule:hover{float:left;background-color: #C5C5C5;width: 100%;border-radius: 2px;}*/
+.classroomInfos{float:left;width: 75%;min-height: 20px;}
+.classroomActions{float:right;width: 25%;margin-top:2px;min-height: 20px;}
+.updateClassroomButton { float:right; width:16px; height: 16px; background-image : url(../img/update.png); background-size : 100%; cursor:pointer;}
+.copyClassroomButton { float:right; width:16px; height: 16px; background-image : url(../img/copy.png); background-size : 100%; cursor:pointer;}
+.deleteClassroomButton { float:right; width:16px; height: 16px; background-image : url(../img/delete.png); background-size : 100%; cursor:pointer;}
+.closeClassroomButton {float:right; width:16px; height: 16px; background-image : url(../img/delete.png); background-size : 100%; cursor:pointer;}
+.openClassroomButton{float:right; width:16px; height: 16px; background-image : url(../img/open_classroom.png); background-size : 100%; cursor:pointer;}
+.appointementSave{float:right; width:16px; height: 16px; background-image : url(../img/appointment_save.png); background-size : 100%; cursor:pointer;margin-right: 2px;}
+.helloTutor {padding:5px;float:left;font-size: 15px;}
+.helloTutor span {float:left; margin-left:15px;font-weight:bold}
+.myTutorClasses, .myTutorClasses a {color:#0033FF;}
+.myTutorClasses a:hover{text-decoration:underline}
+.othersClasses a,.othersClasses a:link{color:LightSteelBlue;}
+.othersClasses a:hover{text-decoration:underline;color:#0033FF;}
+.classroomOpenStatus {color:green;}
+.classroomClosedStatus {color:red;}
+.classroomTutorOpen{float:left;width:100%;color: #81BA3A;border-radius: 2px;padding-bottom: 2px;margin-bottom:2px;}
+.classroomTutorClosed{float:left;width:100%;background-color: #FF4545;border-radius: 2px;padding-bottom: 2px;margin-bottom:2px;color:#B5B5B5}
+.exportLinkWeekScheduleTutor {float:left;font-size: 15px;font-weight:bold;margin-left:15px;}
+.exportLinkWeekScheduleTutor span a {text-decoration: none;cursor:pointer;}
+
+
+
+/*==============================================================globalNavigation===================================================================*/
+/*share*/
+.globalNav{background:#f4f4f4;height:40px;padding-right:4px;/*cursor:pointer*/padding-left:20px;}
+.globalNav div {float:left;height:100%;padding:0 15px;/*cursor:pointer;*/}
+.globalNav div:hover{background:#e3e6e8;}
+.globalNav div span {float:left;height: 100%}
+.globalNav div span a {color:#333;text-decoration: none;display:block;height:40px;padding:0 15px;line-height:40px;font-size:14px;}
+.globalNav div span a:hover {background:#background:#e3e6e8;cursor:pointer;}
+/******/
+/* specific */
+.globalNav .selected{background:#ffe25f;}
+.globalNav .highLight{background:#ffe25f;}
+.globalNav .home {/*margin-left:20px;*/}
+.globalNav .virtualClass {}
+.globalNav .eLesson{}
+.globalNav .phoneCourse{}
+.globalNav .library{}
+.globalNav .test{}
+.globalNav .synthese{}
+/************/
+
+/*============================================================== LOGIN ===================================================================*/
+.loginDiv{position:relative;margin:auto ;border: 1px solid;min-width:600px;min-height: 150px;width:30%;height:150px; background-color: white;padding: 1%;margin-top: 15%}
+.msgErrorConnexion span {color:red;width:50%;font-size: 12px;text-align: left;font-weight: bold;text-indent: 5px;margin-bottom: 5px;}
+.loginTitle {color: #728399;font-weight: bold; font-size: 24px;  width:100%}
+.loginTitle span {width:50%;float: left;}
+.welcomeMessage,.loginForm {width:50%;float:left;}
+.welcomeMessage {margin-top: 4%;}
+.welcomeMessage p {padding:3% 5% 3% 0%;}
+.loginForm {background-color: LightSteelBlue ;padding-top: 2%;}
+.loginForm span {padding:2px;vertical-align: middle;margin-bottom: 2%}
+.loginForm span label {text-align:center;}
+.field {margin:0% 2px;width: 100%}
+.connexionButtonDiv {padding:15px;}
+.connexionButtonDiv span {text-align:center;margin: 2% 12% 5% 12%}
+.button_style { font-size: 12px; color: #666666; border: 1px solid #ECE9D8; padding: 1px 10px 1px 10px; }
+
+/*============================================================== FOOTER ===================================================================*/
+.footer{padding-top:10px;height:40px;clear:both;border-top:1px solid #eee;}
+.footer li,
+.footer li a{font-size:11px;color:#333;}
+.footer .footerInfo {float:right;}
+.footer .footerInfo li {float:left;padding:0 15px;background:url(../img/nav_new.png) left -548px no-repeat;line-height:15px;}
+.footer .footerInfo li:first-child {background:none;}
+.footer .footerInfo .help:hover span,
+.footer .footerInfo .helpSelected span {color:#fff;}
+.footer .footerInfo .normalLink {text-decoration:none;}
+.footer .footerInfo .normalLink:hover {color:#6598c9;}
+.footer .footerInfo .helpSelected,
+.footer .footerInfo .help {float:left;padding-left:18px;background:url(../img/nav_new.png) 0 -449px no-repeat;text-decoration:none;}
+.footer .footerInfo .helpSelected span,
+.footer .footerInfo .help span {display:block;padding:1px 18px 3px 5px;background:url(../img/nav_new.png) right -491px no-repeat;}
+.footer .footerInfo .helpSelected span {background:url(../img/nav_new.png) right -743px no-repeat #6598c9;}
+.footer .footerInfo .help:hover span {background:url(../img/nav_new.png) right -743px no-repeat #9fc4e4;}
+
+/* ======================================= edit page ============================================== */
+.list .table .editLable
+{
+	width: 20%;
+	text-align: right;
+	font-weight: bold;
+}
+.list .table .editContent
+{
+	width: 80%;
+}
+.list .table .editContent input[type="text"],
+.list .table .editContent textarea
+{
+	width: 600px;
+}

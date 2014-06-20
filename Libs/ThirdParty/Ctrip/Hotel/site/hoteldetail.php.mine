@@ -1,0 +1,309 @@
+<?php
+/**
+ *处理显示酒店的详细信息
+ */
+include_once '../Common/browseHistoryClass.php';//加载浏览记录的方法
+include_once ("../include/siteAd.php");//加载广告的处理逻辑
+include_once ("../appData/site.config.php");//加载整站系统的配置文件
+include_once("../include/urlRewrite.php");//加载URL伪静态处理
+include_once ('../SDK.config.php');//配置文件加载--必须加载这个文件
+include_once (ABSPATH.'sdk/API/Hotel/D_HotelDetail.php');//加载D_HotelSearch这个接口的封装类
+include_once ('module/main_hotelSearch.php');//加载搜索的主逻辑
+$index_cssurl=$UnionSite_domainName."/site/css/styles.css";//本页面的CSS样式地址
+//获取符合条件的酒店详细数据
+$mainHotelSearch=new page_hotelSearch();
+$mainHotelSearch->isSiteUrlRewriter=$SiteUrlRewriter;//设置本系统是否要做伪静态
+$mainHotelSearch->thisUnionSite_domainName=$UnionSite_domainName;//设置系统的域名
+$mainHotelSearch->getHotelDetailResponseXML_URL();//调用酒店列表的接口
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cn">
+<head>
+<title>产品详情页</title>
+<link rel="stylesheet" type="text/css"
+	href="<?php echo $index_cssurl;?>" />
+</head>
+<body>
+<?php include_once 'module/header.php';//加载头部文件
+/*处理历史浏览记录的问题*/
+$historyControl=new browse_history_class();
+$values=$mainHotelSearch->hotelID."|".$mainHotelSearch->hotelDetailName;//新的值
+$historyControl->setListHotel("hotelBrowseHistory", $values, $SiteHotelBrowserListTotalNums);
+
+/*处理历史浏览记录的问题*/
+
+?>
+<?php include_once 'module/bar_navigation.php';//加载导航文件 ?>
+<!-- bd begin -->
+<div class="bd bd_detail">
+<div class="path_bar"><a
+	href="<?php echo getNewUrl($UnionSite_domainName."/site/index.php",$SiteUrlRewriter);?>">首页</a>
+&gt; <?php echo $CityName?>酒店预定&gt; 上海马可波罗大酒店</div>
+<?php
+$isShowMoreSearchCondition =false;//是否显示星级+价格+品牌等筛选条件，false 表示不筛选
+include_once 'module/main_hotelSearch_term.php';//加载搜索页面的条件选择器
+?>
+<div class="detail_info basefix"><?php  echo $mainHotelSearch->hotelDetail_TitleAddress?>
+<div class="detail_info_right">
+<div class="detail_info_price basefix"><a href="#" class="btn_blue">立即预订&gt;</a>
+<p class="low_price"><dfn><?php echo currencyTransition($mainHotelSearch->hotelDetailCurrencyMinPrice);?></dfn><span><?php echo isDouble($mainHotelSearch->hotelDetailPrice);?></span>
+起</p>
+</div>
+<div class="detail_info_comment">
+<div class="hotel_judge"><?php echo $mainHotelSearch->hotelDetailJudge;?>
+</div>
+<ul class="hotel_point basefix">
+	<!-- 更改width来改变进度条 -->
+<?php echo $mainHotelSearch->hotelDetailPointBasefix;?>
+</ul>
+<div class="latest_comment"><span
+	title="酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好酒店好 房间大 服务不错 卫生好">酒店好
+房间大 店好 房间 卫生好...</span><b></b></div>
+</div>
+</div>
+</div>
+<div class="search_content basefix"><!-- search_main -->
+<div class="search_main">
+<div class="tab basefix"><a href="#" class="current">客户预定</a> <a
+	href="#">客户点评</a> <a href="#">酒店图片<span>(<?php echo $mainHotelSearch->hotelDetailTotalImageNum?>张)</span></a>
+</div>
+<div class="search_result_list">
+<div class="search_result_box">
+<div class="hotel_date basefix">
+<!-- 重新搜索子房型的列表 -->
+<?php echo showHotelDetailReSearch($mainHotelSearch,$UnionSite_domainName);?>
+</div>
+<table cellspacing="0" cellpadding="0" class="room_list">
+	<thead>
+		<tr>
+			<th style="width: 210px; padding-left: 40px;">房型</th>
+			<th style="width: 80px;">床型</th>
+			<th style="width: 80px;">早餐</th>
+			<th style="width: 80px;">宽带</th>
+			<th style="width: 110px;">房价(含服务费)</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php echo $mainHotelSearch->hotelDetailSubRoomList;?>
+	</tbody>
+</table>
+</div>
+<div class="box_blue">
+<h3>酒店简介</h3>
+<div class="hotel_intro">
+<?php echo $mainHotelSearch->hotelDetailHotelDesc;?>
+</div>
+<table cellspacing="0" cellpadding="0" class="detail_extralist">
+	<tbody>
+		<tr>
+			<th class="border_none">周边环境</th>
+			<td class="border_none"><?php echo $mainHotelSearch->hotelDetailSurroundings;?><a target='_blank' href="http://www.ctrip.com/Merchant/MerchantSearchList.asp?city=<?php echo $mainHotelSearch->cityid?>&hotelzone=<?php echo $mainHotelSearch->hotelDetailZone?>">周边打折</a></td>
+		</tr>
+		<tr>
+			<th>基本信息</th>
+			<td>
+			<ul class="basefix">
+			<?php echo $mainHotelSearch->hotelDetailBaseInfoShow;?>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>附加选择</th>
+			<td>自助早餐价<span><?php echo $mainHotelSearch->hotelDetailDiy_Breakfast;?></span></td>
+		</tr>
+		<tr>
+			<th>酒店服务</th>
+			<td>
+			<ul class="basefix">
+				<?php echo $mainHotelSearch->hotelDetailFacilityAndHotelListType1;?>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>餐饮设施</th>
+			<td>
+			<ul class="basefix">
+			<?php echo $mainHotelSearch->hotelDetailFacilityAndHotelListType2;?>
+			</ul>
+			</td>
+		</tr>
+		 	<tr>
+			<th>娱乐健身</th>
+			<td>
+			<ul class="basefix">
+			<?php echo $mainHotelSearch->hotelDetailFacilityAndHotelListType3;?>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>客房设施</th>
+			<td>
+			<ul class="basefix">
+			<?php echo $mainHotelSearch->hotelDetailFacilityAndHotelListType4;?>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<th>接受信用卡</th>
+			<td>
+			<ul class="basefix">
+				<?php echo $mainHotelSearch->hotelDetailCreditCardInfoList;?>
+			</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<div class="box_blue">
+<div class="transtab"><a href="#" class="current">交通信息</a> <a href="#">周边设施</a>
+</div>
+<div class="trans_info basefix">
+<table>
+	<tbody>
+		<tr>
+			<th>市中心</th>
+			<td>
+			<?php echo $mainHotelSearch->hotelDetailPlaceInfoList4;?>
+			</td>
+		</tr>
+		<tr>
+			<th>机场</th>
+			<td>
+			<?php echo $mainHotelSearch->hotelDetailPlaceInfoList2;?>
+			</td>
+		</tr>
+		<tr>
+			<th>火车站</th>
+			<td>
+			<?php echo $mainHotelSearch->hotelDetailPlaceInfoList1;?>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="trans_map"><img width="272" height="153"
+	src="<?php echo $mainHotelSearch->hotelDetailHotelMapPicUrl;?>" /></div>
+</div>
+</div>
+<div class="box_blue">
+<h3>上海马可波罗假日酒店周边酒店</h3>
+<ul class="surround_hotel basefix">
+	<li class="border_none"><a href="#" class="surround_pic"><img
+		width="100" height="75" src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+	<li class="border_none"><a href="#" class="surround_pic"><img
+		width="100" height="75" src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+	<li class="border_none"><a href="#" class="surround_pic"><img
+		width="100" height="75" src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+	<li><a href="#" class="surround_pic"><img width="100" height="75"
+		src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+	<li><a href="#" class="surround_pic"><img width="100" height="75"
+		src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+	<li><a href="#" class="surround_pic"><img width="100" height="75"
+		src="images/hotel_100_75.jpg" /></a>
+	<div></div>
+	<span class="surround_distance">距2.0km</span>
+	<p class="name"><a href="#" title="锐斯特连锁酒店">锐斯特连锁酒店</a></p>
+	<p class="mark"><span class="half_diamond04"></span><a href="#">3.8分</a></p>
+	<p class="price"><span><dfn>&yen;</dfn>98</span>起</p>
+	</li>
+</ul>
+</div>
+</div>
+<!-- search_side -->
+<div class="search_side">
+<div class="search_side_box">
+<h3>浏览记录</h3>
+<ul class="side_list history">
+	<li><a href="#" title="上海景宸国际酒店">上海景宸国际酒店</a><a href="#" class="delete">×</a></li>
+	<li><a href="#" title="上海景宸国际酒店">上海景宸国际酒店</a><a href="#" class="delete">×</a></li>
+	<li><a href="#" title="上海景宸国际酒店">上海景宸国际酒店</a><a href="#" class="delete">×</a></li>
+	<li><a href="#" title="上海景宸国际酒店">上海景宸国际酒店</a><a href="#" class="delete">×</a></li>
+	<li><a href="#" title="上海景宸国际酒店">上海景宸国际酒店</a><a href="#" class="delete">×</a></li>
+</ul>
+</div>
+<div class="search_side_box">
+<h3>地表信息</h3>
+<ul class="side_list border_dashed">
+	<li><strong>景点</strong><a href="#" class="more">更多</a></li>
+	<li><a href="#" title="北外滩">北外滩</a></li>
+	<li><a href="#" title="F1赛车场">F1赛车场</a></li>
+	<li><a href="#" title="西佘山">西佘山</a></li>
+	<li><a href="#" title="东方绿舟">东方绿舟</a></li>
+	<li><a href="#" title="东平森林公园">东平森林公园</a></li>
+	<li><a href="#" title="上海野生动物园">上海野生动物园</a></li>
+	<li><a href="#" title="外滩">外滩</a></li>
+	<li><a href="#" title="锦江乐园">锦江乐园</a></li>
+	<li><a href="#" title="上海动物园">上海动物园</a></li>
+	<li><a href="#" title="迪士尼乐园">迪士尼乐园</a></li>
+</ul>
+<ul class="side_list border_dashed">
+	<li><strong>商场百货</strong><a href="#" class="more">更多</a></li>
+	<li><a href="#" title="北外滩">城隍庙</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+	<li><a href="#" title="打浦桥商圈">打浦桥商圈</a></li>
+</ul>
+<ul class="side_list border_dashed">
+	<li><strong>行政区</strong><a href="#" class="more">更多</a></li>
+	<li><a href="#" title="奉贤区">奉贤区</a></li>
+	<li><a href="#" title="普陀区">普陀区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+	<li><a href="#" title="宝山区">宝山区</a></li>
+</ul>
+<ul class="side_list">
+	<li><strong>商业区</strong><a href="#" class="more">更多</a></li>
+	<li><a href="#" title="朱家角">朱家角</a></li>
+	<li><a href="#" title="东方绿舟">东方绿舟</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+	<li><a href="#" title="南外滩地区">南外滩地区</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- bd end -->
+<?php include_once 'module/foot.php';//加载底部控制文件 ?>
+</body>
+</html>

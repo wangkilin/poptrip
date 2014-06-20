@@ -1,0 +1,139 @@
+/* styles_orange */
+
+/* un_icon */
+.nav .current{background-position:-112px 0;}
+
+/* btn */
+.btn_orange{background-position:-144px 0;}
+.btn_blue{background-position:0 -72px;}
+.btn_m_blue,.btn_m_blue2{background-position:0 -108px;}
+/*.btn_m_blue2{display:block;text-align:center;}*/
+.btn_m_light{color:#855725;background-position:-61px -132px;}
+.btn_mid{background-position:-144px -36px;}
+
+/* un_repeatx */
+.nav{background-position:0 -48px;}
+.tab .current,.tab .current:hover{border-color:#C18913;background-position:0 -240px;}
+
+/* nav */
+.nav a .tri{border-left:6px solid #EB731B;border-right:6px solid #EB731B;}
+
+/* search_box */
+.search_box {border-color:#94C8ED;background-color:#E7F5FF;}
+.search_box h3{color:#0073C4;background-position:-310px -157px;}
+
+/* box */
+.box_orange{border-color:#94C8ED;}
+.box_orange h3{color:#0073C4;border-bottom-color:#94C8ED;background-color:#E7F5FF}
+.box_orange .more{color:#0073C4;}
+.box_blue{border-color:#DED08E;}
+.box_blue h2{color:#E6790A;border-bottom-color:#DED08E;background-color:#FCFAE3;}
+.box_blue .more{color:#855725;}
+.box_blue .more a{color:#855725;}
+.box_blue .box_title,.box_orange .box_title{border-bottom-color:#F08B1F;}
+
+/* rank_list */
+.rank_list li strong{background-color:#9ED7FF;}
+.rank_list .rank_top strong{background-color:#008FF3;}
+.box_orange .more ul{border-color:#94C8ED;}
+.box_orange .more a{color:#0073C4;}
+.box_orange .more span{border-top-color:#0073C4;border-left-color:#E7F5FF;border-right-color:#E7F5FF;}
+.box_orange .more ul li a:hover{background-color:#008FF3;}
+
+/* city_list */
+.city_list li a{color:#855725;}
+.city_list li .current{border-left-color:#F08B1F;border-right-color:#F08B1F;border-top:3px solid #FFA23E;}
+
+/* content */
+.content_blue h3{border-color:#F08B1F;}
+.content .place a{color:#855725;}
+.content .more{color:#855725;background-position:27px -254px;}
+.content dl dt a{color:#855725;}
+
+/*.comment_box */
+.comment_box h2{border-bottom-color:#DED08E;}
+
+/* bd_brand */
+.bd_brand .side .box_blue{border-color:#B7D6EA;}
+.bd_brand .box_blue h3 {color:#E6790A;border-bottom-color:#DED08E;background-color:#FCFAE3;}
+.brand_hotel_intro{border-color:#DED8AD;}
+
+/* detail_info */
+.detail_info_comment {border-color:#DED8AD;background-color:#FDFCED;border-radius:5px;}
+.detail_info_comment .hotel_judge {color:#333;border-bottom-color:#DED8AD;background-color:#FFFAC3;border-radius:5px 5px 0 0;}
+.detail_info_comment .hotel_judge a{color:#855725;}
+.detail_info_comment .latest_comment {color:#333;border-top-color:#DED8AD;}
+.detail_info_comment .latest_comment span{background-position:-314px -348px;}
+.detail_info_comment .hotel_judge .mark{color:#F08B1F;}
+
+/* progress_bar */
+.progress_bar {border-color:#F08B1F;}
+.progress_bar div {background-position:-80px -112px;}
+
+/* search_main */
+
+/* search_result_list */
+.search_result_list {border-color:#DED8AD;}
+.search_result_box{border-top-color:#F08B1F;}
+.search_main .search_main_page,.search_main .search_main_page a{color:#855725;}
+
+/* room_list */
+.room_list th{background-color:#FCFAE3;}
+.room_list a{color:#855725;}
+
+/* bd_detail */
+.bd_detail .box_blue h3 {color:#855725;border-bottom-color:#DED08E;background-color:#FCFAE3;}
+
+/* transtab */
+.transtab {border-bottom-color:#DED08E;background-color:#FCFAE3;}
+.transtab a {color:#855725;}
+.transtab .current {border-bottom-color:#F08B1F;}
+
+/* detail_pic */
+.result_hotel_pic a {color:#855725;border-bottom-color:#F08B1F;}
+
+/* bd_credit_card */
+.bd_credit_card .box_blue h3 {color:#855725;border-bottom-color:#DED8AD;background-color:#FCFAE3}
+
+/* result_comment */
+.result_comment {background-color:#FCFAE3;}
+.result_comment .comment_mark{border-bottom-color:#F4EEBF;}
+.result_comment .comment_mark .mark a{color:#F08B1F;}
+.result_comment .float_left{background-position:-300px -341px;}
+
+/* page_ctrl */
+.page_ctrl .current,.page_ctrl .current:hover{border-color:#F08B1F;background-image:none;background-color:#FCFAE3;}
+
+/* hot_sale */
+.hot_sale .tab {border-bottom-color:#F08B1F;}
+.hot_sale_content{border-color:#DED8AD;}
+.hot_sale_title{color:#855725;border-bottom-color:#DED8AD;background-color:#FCFAE3;}
+
+/* detail_pic */
+.pic_scroll .page_up {background-position:-47px 0;}
+.pic_scroll .page_up:hover {background-position:-47px -36px;}
+.pic_scroll .page_down {background-position:-66px 0;}
+.pic_scroll .page_down:hover {background-position:-66px -36px;}
+
+/*confirm_box */
+.confirm_box{border-color:#DED8AD;}
+
+/* info_box */
+.info_box{border-color:#DED08E;background-color:#FCFAE3;}
+.info_box .float_left{border-right-color:#DED08E;}
+
+/* city_sort */
+.city_sort strong{color:#F1BD86;}
+
+/* friendlink */
+.friendlink{border-color:#DED08E;}
+.friendlink h3 {color:#E6790A;border-bottom-color:#DED08E;background-color:#FCFAE3;}
+
+/* ft */
+.ft{border-top-color:#DED8AD;}
+
+.city_list_popup{color:#855725;border-color:#DED08E;}
+.city_list_popup li a{color:#855725;}
+.city_list_popup li a:hover {background-color:#FF9C35;}
+
+.hot_sale h2 a{color:#855725}

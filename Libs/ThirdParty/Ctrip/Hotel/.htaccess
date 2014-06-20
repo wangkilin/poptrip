@@ -1,0 +1,100 @@
+# Helicon ISAPI_Rewrite configuration file
+# Version 3.1.0.45
+
+# BEGIN WinBlog
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^mod/id_([0-9]+)\.html$ mod.php?id=$1 [L]
+RewriteRule ^2/id_([0-9]+)\.html$ 2.php?id=$1 [L]
+RewriteRule ^searcher/CityName_(.*)/ProductID_([0-9]+)\.html$ searcher.php?CityName=$1&ProductID=$2
+RewriteRule ^fload2012/searcher/CityName_(.*)/ProductID_([0-9]+)\.html$ fload2012/searcher.php?CityName=$1&ProductID=$2
+RewriteRule ^index/id_([0-9]+)\.html$ index.php?id=$1 [L]
+RewriteRule ^DEMO/demo_D_hotelSearch\.html$ DEMO/demo_D_hotelSearch.php [L]
+RewriteRule ^DEMO/demo_D_hotelDetail/HotelID_(.*)/CityID_([0-9]+)/CheckInDate_(.*)/CheckOutDate_(.*)\.html$ DEMO/demo_D_hotelDetail.php?HotelID=$1&CityID=$2&CheckInDate=$3&CheckOutDate=$4 [L]
+#-----------------------以上是样例
+RewriteRule ^$  site/index.php [L]
+#RewriteRule ^index.php$ site/index.php [L]
+#RewriteRule ^site/default\.html$ site/default.php [L]
+RewriteRule ^site/index/defaultcityid_(.*)\.html$ site/index.php?defaultcityid=$1 [L]
+RewriteRule ^site/index\.html$ site/index.php [L]
+RewriteRule ^site/brand\.html$ site/brand.php [L]
+RewriteRule ^site/brand/defaultcityid_(.*)\.html$ site/brand.php?defaultcityid=$1 [L]
+RewriteRule ^site/brandinfo/brand_(.*)/brandcnname_(.*)\.html$ site/brandinfo.php?brand=$1&brandcnname=$2 [L]
+RewriteRule ^site/branddetail/brand_(.*)/brandcnname_(.*)/city_(.*)\.html$ site/branddetail.php?brand=$1&brandcnname=$2&city=$3 [L]
+#RewriteRule ^site/cityhotel\.html$ site/cityhotel.php [L]
+RewriteRule ^site/cityhotel/defaultcityid_(.*)\.html$ site/cityhotel.php?defaultcityid=$1 [L]
+#RewriteRule ^site/citylandmark\.html$ site/citylandmark.php [L]
+RewriteRule ^site/citylandmark/defaultcityid_(.*)/getNums_(.*)\.html$ site/citylandmark.php?defaultcityid=$1&getNums=$2 [L]
+RewriteRule ^site/citylandmark/defaultcityid_(.*)\.html$ site/citylandmark.php?defaultcityid=$1 [L]
+#RewriteRule ^site/hotelcomment\.html$ site/hotelcomment.php [L]
+RewriteRule ^site/hotelcomment/defaultcityid_(.*)/page_(.*)\.html$ site/hotelcomment.php?defaultcityid=$1&page=$2 [L]
+RewriteRule ^site/hotelcomment/defaultcityid_(.*)\.html$ site/hotelcomment.php?defaultcityid=$1 [L]
+
+
+RewriteRule ^site/order\.html$ site/order.php [L]
+RewriteRule ^site/order/checkinname_(.*)/telephone_(.*)/checkindate_(.*)/checkoutdate_(.*)/orderstatue_(.*)\.html$ site/order.php?checkinname=$1&telephone=$2&checkindate=$3&checkoutdate=$4&orderstatue=$5 [L]
+RewriteRule ^site/order/checkinname_(.*)/telephone_(.*)/checkindate_(.*)/checkoutdate_(.*)\.html$ site/order.php?checkinname=$1&telephone=$2&checkindate=$3&checkoutdate=$4 [L]
+
+RewriteRule ^site/orderdetail/orderid_(.*)/checkinname_(.*)/telephone_(.*)/orderstatue_([0-9]+)/checkindate_(.*)/checkoutdate_(.*)\.html$ site/orderdetail.php?orderid=$1&checkinname=$2&telephone=$3&orderstatue=$4&checkindate=$5&checkoutdate=$6 [L]
+
+
+#酒店详情
+RewriteRule ^site/hoteldetail/city_(.*)/cdate_(.*)/stb_(.*)/price_(.*)/hname_(.*)/lzod_(.*)/hf_(.*)/oy_(.*)/pf_(.*)\.html$ site/hoteldetail.php?city=$1&cdate=$2&stb=$3&price=$4&hname=$5&lzod=$6&hf=$7&oy=$8&pf=$9 [L]
+RewriteRule ^site/hoteldetail/city_(.*)\.html$ site/hoteldetail.php?city=$1
+
+RewriteRule ^site/hoteldetail/mapiframe.php$ site/mapiframe.php
+
+#酒店排行榜
+RewriteRule ^site/hotelhotlist/city_(.*)/SumType_(.*)/op_(.*)/starlevel_(.*)/newtype_(.*)/page_(.*)\.html$ site/hotelhotlist.php?city=$1&SumType=$2&op=$3&starlevel=$4&newtype=$5&page=$6 [L]
+RewriteRule ^site/hotelhotlist/city_(.*).html$ site/hotelhotlist.php?city=$1
+
+
+#酒店搜索页面
+RewriteRule ^site/hotelsearch/city_(.*)/cdate_(.*)/stb_(.*)/price_(.*)/hname_(.*)/lzod_(.*)/hf_(.*)/oy_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&cdate=$2&stb=$3&price=$4&hname=$5&lzod=$6&hf=$7&oy=$8&pf=$9 [L]
+
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/hname_(.*)/lzod_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&hname=$3&lzod=$4&hf=5&pf=$6 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/hname_(.*)/lzod_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&hname=$3&lzod=$4&pf=$5 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/hname_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&hname=$3&hf=$4&pf=$5 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/hname_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&hname=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/lzod_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&lzod=$3&hf=4&pf=$5 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/lzod_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&lzod=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&hf=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/stb_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&stb=$2&pf=$3 [L]
+
+
+
+RewriteRule ^site/hotelsearch/city_(.*)/hname_(.*)/lzod_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&hname=$2&lzod=$3&hf=$4&pf=$5 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/hname_(.*)/lzod_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&hname=$2&lzod=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/hname_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&hname=$2&hf=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/hname_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&hname=$2&pf=$3 [L]
+
+RewriteRule ^site/hotelsearch/city_(.*)/lzod_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&lzod=$2&hf=$3&pf=$4 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/lzod_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&lzod=$2&pf=$3 [L]
+
+RewriteRule ^site/hotelsearch/city_(.*)/hf_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&hf=$2&pf=$3 [L]
+RewriteRule ^site/hotelsearch/city_(.*)/pf_(.*)\.html$ site/hotelsearch.php?city=$1&pf=$2 [L]
+
+
+
+
+
+
+
+RewriteRule ^site/ajaxrequest/hotelRecommendRequest/city_(.*)\.html$ site/ajaxrequest/hotelRecommendRequest.php?city=$1
+RewriteRule ^site/ajaxrequest/hotelChartsRequest/city_(.*)\.html$ site/ajaxrequest/hotelChartsRequest.php?city=$1
+RewriteRule ^site/ajaxrequest/hotelChartsRequest\.html$ site/ajaxrequest/hotelChartsRequest.php
+RewriteRule ^site/ajaxrequest/hotelRecommendRequest\.html$ site/ajaxrequest/hotelRecommendRequest.php
+RewriteRule ^site/ajaxrequest/hotCityLandMarkRequest/getNums_(.*)/city_(.*)\.html$ site/ajaxrequest/hotCityLandMarkRequest.php?getNums=$1&city=$2
+
+
+#-----以下为后台及安装模块url rewrite规则
+RewriteRule ^admin/$ admin/login.php [L]
+RewriteRule ^install/$ install/guide.php [L]
+
+</IfModule>
+# END WinBlog 
+# URL伪静态目前仅仅支持9个参数，如果参数过多，则需要多个参数进行组合
+#(.*) 可以通配所有字符，包括中文urlencode后的数据，但是在往这里塞值的时候，要注意，先做urlencode
+#不同目录的相同名称的文件，最好独立建立规则，以免规则之间出现影响，网站的需要URL虚拟化的页面，目录结构最好简单（建议2层）
+#site/hotelsearch.php 中 city=[cityid,cityname];cdate=[checkindate,checkoutdate];lzo=[location,zone];oy=[ordername,ordertype];pf=[pagenumber,pagesize];--用","隔开
+#site/hotelsearch.php 中 stb=[star;hotelbrand] --用;隔开

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		h1{
+			font-size:24px;
+			font-weight:400;	
+		}
+	</style>
+</head>
+<body>
+	<h1><strong>现付</strong> <a href="index.php?p=guarante">现付担保</a></h1>
+	<form action="index.php" method="post">		
+		Hotel Code: <input type="text" name="hotel_code" value="374351"/> 
+		Rate Plan Code: <input type="text" name="rateplan_code" value="691156"/><br /><br />
+		Number Of Units : <input type="text" name="number_of_units" value="1"/> 
+		Count: <input type="text" name="count"  value="2"/> 
+		Per Room: <input type="text" name="per_room" value="false"/><br /><br />
+		Start Stmp: <input type="text" name="start_stmp"  value="2014-04-01 00:00:00"/> e.g. YY-MM-DD hh:ii:ss  / 
+		End Stmp: <input type="text" name="end_stmp" value="2014-04-02 00:00:00"/> e.g. YY-MM-DD hh:ii:ss<br /><br />
+		Late Arrival Time: <input type="text" name="late_arrival_time"  value="2014-04-01 13:00:00"/>
+		Unique ID: <input type="text" name="unique_id" value="2a2d7f7d-2334-470b-922d-fe7a08376b82" style="width:400px"/> <br /><br />
+		Amount Before Tax: <input type="text" name="amount_before_tax" value="198"/>
+		Amount_currency: <input type="text" name="amount_currency" value="CNY"/><br /><br />
+		Phone_tech_type: <input type="text" name="phone_tech_type" value="1"/>
+		Contact Type: <input type="text" name="contact_type" value="tel"/>
+		Phone Number: <input type="text" name="phone_number" value="34064880"/><br /><br />
+		Contact Name: <input type="text" name="contact_name" value="测试联系人"/> 
+		Contact Email: <input type="text" name="contact_email" value="test@ctrip.com"/> <br /><br />
+		Surname: <input type="text" name="surname" value="测试订单,测试"/>
+		Special Text: <input type="text" name="special_text" value="测试订单，请取消，谢谢"/><br /><br />
+		<input type="submit" value="提交" />		
+	</form>	
+</body>
+</html>

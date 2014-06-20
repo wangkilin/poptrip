@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		h1{
+			font-size:24px;
+			font-weight:400;	
+		}
+	</style>
+</head>
+<body>
+	<h1><a href="index.php">现付</a> <strong>现付担保</strong></h1>
+	<form action="index.php" method="post">
+		Hotel Code: <input type="text" name="hotel_code" value="444194"/> 
+		Rate Plan Code: <input type="text" name="rateplan_code" value="180283"/><br /><br />
+		Number Of Units : <input type="text" name="number_of_units" value="1"/> 
+		Count: <input type="text" name="count"  value="2"/> 
+		Per Room: <input type="text" name="per_room" value="false"/><br /><br />
+		Start Stmp: <input type="text" name="start_stmp"  value="2014-04-01 00:00:00"/> e.g. YY-MM-DD hh:ii:ss  / 
+		End Stmp: <input type="text" name="end_stmp" value="2014-04-02 00:00:00"/> e.g. YY-MM-DD hh:ii:ss<br /><br />
+		Late Arrival Time: <input type="text" name="late_arrival_time"  value="2014-04-01 13:00:00"/>
+		Unique ID: <input type="text" name="unique_id" value="86826d23-5fee-4f00-b66e-89f4b76119f2" style="width:400px"/> <br /><br />
+		Amount Before Tax: <input type="text" name="amount_before_tax" value="368"/>
+		Amount Currency: <input type="text" name="amount_currency" value="CNY"/><br /><br />
+		Phone Tech Type: <input type="text" name="phone_tech_type" value="1"/>
+		Contact Type: <input type="text" name="contact_type" value="tel"/>
+		Phone Number: <input type="text" name="phone_number" value="34064880"/><br /><br />
+		Contact Name: <input type="text" name="contact_name" value="测试联系人"/> 
+		Contact Email: <input type="text" name="contact_email" value="test@ctrip.com"/> <br /><br />
+		Surname: <input type="text" name="surname" value="测试订单,测试"/>
+		Special Text: <input type="text" name="special_text" value="测试订单，请取消，谢谢"/><br /><br />
+		
+		---- 信用卡信息：（现付担保类型必填） ---------------------------------------------------------------------<br/><br/>
+		Card Type: <input type="text" name="card_type" value=""/>
+		Card Number: <input type="text" name="card_number" value=""/>
+		Series Code: <input type="text" name="series_code" value=""/><br /><br />
+		Effective Date: <input type="text" name="effective_date" value=""/>
+		Expire Date: <input type="text" name="expire_date" value=""/> <br /><br />
+		Holder Name: <input type="text" name="card_holder_name" value=""/>
+		Id Card: <input type="text" name="card_holder_idcard" value=""/>
+		<br /><br />
+		
+		---- 担保信息：（现付担保类型必填）  -----------------------------------------------------------------------<br/><br/>
+		Guarante Code: <input type="text" name="guarante_code" value="4"/> 
+		Guarante Amount: <input type="text" name="guarante_amount" value="368"/> 
+		Guarante Currency: <input type="text" name="guarante_currency" value="CNY"/><br /><br />
+		Cancel Penalty Start: <input type="text" name="cancel_penalty_start" value="2014-04-01 00:00:00"/> 
+		Cancel Penalty End: <input type="text" name="cancel_penalty_end" value="2014-04-02 00:00:00"/><br /><br />
+
+		<input type="hidden" name="is_guarante" value="true" /> <!-- 现付担保标记  -->
+		<input type="submit" value="提交" />		
+	</form>	
+</body>
+</html>

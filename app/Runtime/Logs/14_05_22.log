@@ -1,0 +1,42 @@
+[ 2014-05-22T11:43:09+08:00 ] 127.0.0.1 /PublicPlatform/index.php/Test/Dianping/updateCategory/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.005215s ]
+INFO: [ route_check ] --END-- [ RunTime:0.006048s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.005206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006101s ]
+
+[ 2014-05-22T11:43:18+08:00 ] 127.0.0.1 /PublicPlatform/index.php/Test/Dianping/updateCategory/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.004124s ]
+INFO: [ route_check ] --END-- [ RunTime:0.005276s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.004281s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005331s ]
+SQL: SHOW COLUMNS FROM `city` [ RunTime:0.005008s ]
+SQL: SELECT `city_id`,`city_name` FROM `city` WHERE ( province_id<35 )  [ RunTime:0.005503s ]
+NOTIC: [8] Undefined variable: params K:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 695 行.
+NOTIC: [8] Undefined variable: params K:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 783 行.
+
+[ 2014-05-22T11:44:01+08:00 ] 127.0.0.1 /PublicPlatform/index.php/Test/Dianping/updateCategory/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.002778s ]
+INFO: [ route_check ] --END-- [ RunTime:0.003613s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002926s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003753s ]
+SQL: SHOW COLUMNS FROM `city` [ RunTime:0.004344s ]
+SQL: SELECT `city_id`,`city_name` FROM `city` WHERE ( province_id<35 )  [ RunTime:0.005395s ]
+NOTIC: [8] Undefined variable: params K:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 695 行.
+NOTIC: [8] Undefined variable: params K:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 783 行.
+
+[ 2014-05-22T22:24:28+08:00 ] 127.0.0.1 /PublicPlatform/index.php/Test/Dianping/updateCategory
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.033754s ]
+INFO: [ route_check ] --END-- [ RunTime:0.150077s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.030138s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.030466s ]
+NOTIC: [8] Undefined variable: params I:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 695 行.
+NOTIC: [8] Undefined variable: params I:\PublicPlatform\Libs\Classes\Dianping\HttpRequester.class.php 第 783 行.
+
