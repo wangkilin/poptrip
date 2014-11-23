@@ -18,6 +18,12 @@ $databaseName = 'pop';
 $conn = mysql_connect($server, $username, $password);
 mysql_select_db($databaseName, $conn);
 mysql_query('set names "UTF8"');
+$imgData = file_get_contents('./barimage.bmp');
+$sql = 'insert into img_db (img_data) values ("'.$imgData . '")';
+mysql_query($sql);
+echo mysql_error();
+
+exit;
 
 
 $imgRootDir = './';
@@ -41,15 +47,15 @@ while(($row=mysql_fetch_assoc($result))) {
     $smallImageURL = $imgRootDir . substr($smallImageURL, 7);
     $middleImageURL = $imgRootDir . substr($middleImageURL, 7);
     $bigImageURL = $imgRootDir . substr($bigImageURL, 7);
-	
+
 	if(!file_exists($imgPath) ||!file_exists($iconImagePath) ||!file_exists($smallImagePath) ||!file_exists($middleImagePath) ||!file_exists($bigImagePath)) {
 	    $query = "UPDATE scenery_img
-                  SET pic_loaded = false 
+                  SET pic_loaded = false
                   WHERE img_id = " . $row['img_id'];
         mysql_query($query);
 		continue;
 	}
-	
+
 	if(!file_exists($imgUrl)) {
 	    error_log("$imgUrl not exist\r\n", 3, './removeImg.log.txt');
 	}
@@ -66,7 +72,7 @@ while(($row=mysql_fetch_assoc($result))) {
 	if(!file_exists($bigImageURL)) {
 	    error_log("$bigImageURL not exist\r\n", 3, './removeImg.log.txt');
 	}
-	
+
 	if(md5_file($imgPath)!=md5_file($imgUrl)) {
 	    error_log( md5_file($imgPath). '   ' . md5_file($imgUrl) . "   $imgUrl -- $imgPath is wrong\r\n", 3, './wrongImg.log.txt');
 	}
@@ -82,6 +88,6 @@ while(($row=mysql_fetch_assoc($result))) {
 	if(md5_file($bigImagePath)!=md5_file($bigImageURL)) {
 	    error_log( md5_file($bigImagePath). '   ' . md5_file($bigImageURL) . "   $bigImageURL -- $bigImagePath is wrong\r\n", 3, './wrongImg.log.txt');
 	}
-	
+
 	@unlink($imgUrl);@unlink($iconImageURL);@unlink($smallImageURL);@unlink($middleImageURL);@unlink($bigImageURL);
 }

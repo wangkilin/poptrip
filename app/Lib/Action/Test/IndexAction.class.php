@@ -54,7 +54,8 @@ class IndexAction extends Action
     public function importLrc ()
     {
         $dir = 'E:\\Production';
-        $lrcFiles = $this->getLrcFiles($dir);
+        $categoryId = $this->storeDirIntoDb('root', 0);
+        $lrcFiles = $this->getLrcFiles($dir, $categoryId);
         //print_r($lrcFiles);
         foreach ($lrcFiles as $_fileInfo) {
             $this->_loadLrcFileIntoDb ($_fileInfo);
@@ -63,6 +64,28 @@ class IndexAction extends Action
 
     protected function _loadLrcFileIntoDb ($fileInfo)
     {
+        $categoryId = $fileInfo['categoryId'];
+        $filename = basename($fileInfo['filePath']);
+        $fp = fopen($fileInfo['filePath'], 'r');
+        $dbFileModel = M('lrc_file');
+        $dbLrcModel = M('lrc_content');
+        $fileData = array('file_name'=>$filename,
+                          'mp3_file_path'=>substr($fileInfo['filePath'], 0, -4) .'.mp3',
+
+                          'category_id'=>$categoryId);
+        $fileId = $dbFileModel->add($fileData);
+        while(!feof($fp)) {
+            $line=fgets($fp);
+            preg_match('/\[(.*)\](.*)/', $line, $match);
+            if ($match) {
+                $time = $match[1];
+                $content = $match[2];
+                $contentData = array('start_time'=>$time,
+                        'line_content'=>$content,
+                        'file_id'=>$fileId);
+                $dbLrcModel->add($contentData);
+            }
+        }
         return ;
     }
 
@@ -70,26 +93,41 @@ class IndexAction extends Action
     {
         $lrcFilesList = array();
         if (! file_exists($dir)) {
-            echo $dir;
             return $lrcFilesList;
         }
         $dirHandler = new DirectoryIterator($dir);
-        static $i=0;
         while($dirHandler->valid()) {
             if ($dirHandler->isDot()) {
                 $dirHandler->next();
                 continue;
             }
             $fileName = $dirHandler->getFilename();
-            echo $i++ . ' ' . $dir . '/' . $fileName . '<br/>';
-            //$fileName = mb_convert_encoding($dirHandler->getFilename(), 'UTF8', 'GB2312');
+            //echo $i++ . ' ' . $dir . '/' . $fileName . '<br/>';
+            $categoryName = mb_convert_encoding($dirHandler->getFilename(), 'UTF8', 'GB2312');
             if ($dirHandler->isDir()) {
                 $_dir = $dir . '/' . $fileName;
-                $_categoryId = $this->storeDirIntoDb($_dir, $categoryId);
+                $_categoryId = $this->storeDirIntoDb($categoryName, $categoryId);
                 $_lrcFilesList = $this->getLrcFiles($_dir, $_categoryId);
-                $lrcFilesList = $lrcFilesList + $_lrcFilesList;
+                $lrcFilesList = array_merge($lrcFilesList, $_lrcFilesList);
             } else if ($dirHandler->isFile()) {
                 $filePath = $dir . '/' . $fileName;
+                if (substr($fileName, -4) == '.lrc') {
+                    $_mp3FileName = substr($filePath, 0, -4).'.mp3';
+                    if (! is_file($_mp3FileName)) {
+                        echo $_mp3FileName."<br/>";
+                        $dirHandler->next();
+                        continue;
+                    }
+                } else if ($fileName=='.meta') {
+                    $this->_loadCdMeta($filePath, $categoryId);
+                    $dirHandler->next();
+                    continue;
+                //} else if ($fileName=='package.zip') {
+                    //unlink($filePath);
+                } else {
+                    $dirHandler->next();
+                    continue;
+                }
                 $lrcFileInfo = array('categoryId'    => $categoryId,
                                      'filePath'      => $filePath
                                );
@@ -101,6 +139,33 @@ class IndexAction extends Action
         }
 
         return $lrcFilesList;
+    }
+
+    protected function _loadCdMeta($metaFile, $categoryId)
+    {
+        if (! is_file($metaFile)) {
+            return;
+        }
+        $metaInfo = parse_ini_file($metaFile);
+        $grade = explode(' ', $metaInfo['grade'], 2);//  1-入门，2-初级，3-中级，4-高级，5-熟练
+        $star = explode(' ', $metaInfo['rating'], 2);//  五星
+        $length = explode(' ', $metaInfo['length'], 2);//  HH:MM:SS
+        $cdInfo = array(
+                'category_id'    => $categoryId,
+                'en_name'        => $metaInfo['name_en'],
+                'cn_name'        => $metaInfo['name_cn'],
+                'author_en'      => $metaInfo['author_en'],
+                'author_cn'      => $metaInfo['author_cn'],
+                'grade'          => $grade[0],
+                'cd_length'      => $length[0],
+                'stars'          => $star[0],
+                'intro_en'       => $metaInfo['introduction_en'],
+                'intro_cn'       => $metaInfo['introduction_cn'],
+
+        );
+        M('lrc_cd_info')->add($cdInfo);
+
+        return;
     }
 
     protected function storeDirIntoDb($dirName, $parentId=0)
