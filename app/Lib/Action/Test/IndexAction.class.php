@@ -63,6 +63,9 @@ class IndexAction extends Action
 
     protected function _loadLrcFileIntoDb ($fileInfo)
     {
+        $categoryId = $fileInfo['categoryId'];
+        $filename = $fileInfo['filename'];
+        $dbModel = M('lrc_file');
         return ;
     }
 
@@ -87,7 +90,7 @@ class IndexAction extends Action
                 $_dir = $dir . '/' . $fileName;
                 $_categoryId = $this->storeDirIntoDb($_dir, $categoryId);
                 $_lrcFilesList = $this->getLrcFiles($_dir, $_categoryId);
-                $lrcFilesList = $lrcFilesList + $_lrcFilesList;
+                $lrcFilesList = array_merge($lrcFilesList, $_lrcFilesList);
             } else if ($dirHandler->isFile()) {
                 $filePath = $dir . '/' . $fileName;
                 $lrcFileInfo = array('categoryId'    => $categoryId,
