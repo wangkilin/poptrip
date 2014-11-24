@@ -60,9 +60,10 @@ define('HTML2FPDF_VERSION','3.0(beta)');
 if (!defined('RELATIVE_PATH')) define('RELATIVE_PATH','');
 if (!defined('FPDF_FONTPATH')) define('FPDF_FONTPATH','font/');
 require_once(RELATIVE_PATH.'fpdf.php');
+require_once(RELATIVE_PATH.'chinese.php');
 require_once(RELATIVE_PATH.'htmltoolkit.php');
 
-class HTML2FPDF extends FPDF
+class HTML2FPDF extends PDF_Chinese
 {
 //internal attributes
 var $HREF; //! string

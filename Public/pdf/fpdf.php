@@ -961,7 +961,7 @@ function finishFlowingBlock($outofblock=false)
               $b = '';
               if ( $lineCount == 1 && is_int( strpos( $border, 'T' ) ) ) $b .= 'T';
               if ( $k == count( $content ) - 1 && is_int( strpos( $border, 'R' ) ) ) $b .= 'R';
-                      
+
               if ($k == $arraysize-1 and !$outofblock) $skipln = 1;
               else $skipln = 0;
 
@@ -1067,7 +1067,7 @@ function WriteFlowingBlock( $s , $outofblock = false )
            $savedFont = array();
            // first, cut off and save any partial words at the end of the string
            $words = explode( ' ', $currContent );
-           
+
            // if it looks like we didn't finish any words for this chunk
            if ( count( $words ) == 1 )
            {
@@ -1274,49 +1274,49 @@ function WordWrap(&$text, $maxwidth)
     }
     $text = rtrim($text);
 
-    //Return -(wordsize) if word is bigger than maxwidth 
+    //Return -(wordsize) if word is bigger than maxwidth
     if ($toonarrow) return -$biggestword;
     else return $count;
 }
 
 //EDITEI
 //Thanks to Seb(captainseb@wanadoo.fr) for the _SetTextRendering() and SetTextOutline() functions
-/** 
-* Set Text Rendering Mode 
-* @param int $mode Set the rendering mode.<ul><li>0 : Fill text (default)</li><li>1 : Stroke</li><li>2 : Fill & stroke</li></ul> 
-* @see SetTextOutline() 
-*/ 
+/**
+* Set Text Rendering Mode
+* @param int $mode Set the rendering mode.<ul><li>0 : Fill text (default)</li><li>1 : Stroke</li><li>2 : Fill & stroke</li></ul>
+* @see SetTextOutline()
+*/
 //This function is not being currently used
-function _SetTextRendering($mode) { 
-if (!(($mode == 0) || ($mode == 1) || ($mode == 2))) 
-$this->Error("Text rendering mode should be 0, 1 or 2 (value : $mode)"); 
-$this->_out($mode.' Tr'); 
-} 
+function _SetTextRendering($mode) {
+if (!(($mode == 0) || ($mode == 1) || ($mode == 2)))
+$this->Error("Text rendering mode should be 0, 1 or 2 (value : $mode)");
+$this->_out($mode.' Tr');
+}
 
-/** 
-* Set Text Ouline On/Off 
-* @param mixed $width If set to false the text rending mode is set to fill, else it's the width of the outline 
-* @param int $r If g et b are given, red component; if not, indicates the gray level. Value between 0 and 255 
-* @param int $g Green component (between 0 and 255) 
-* @param int $b Blue component (between 0 and 255) 
-* @see _SetTextRendering() 
-*/ 
+/**
+* Set Text Ouline On/Off
+* @param mixed $width If set to false the text rending mode is set to fill, else it's the width of the outline
+* @param int $r If g et b are given, red component; if not, indicates the gray level. Value between 0 and 255
+* @param int $g Green component (between 0 and 255)
+* @param int $b Blue component (between 0 and 255)
+* @see _SetTextRendering()
+*/
 function SetTextOutline($width, $r=0, $g=-1, $b=-1) //EDITEI
-{ 
+{
   if ($width == false) //Now resets all values
-  { 
+  {
     $this->outline_on = false;
-    $this->SetLineWidth(0.2); 
-    $this->SetDrawColor(0); 
-    $this->_setTextRendering(0); 
-    $this->_out('0 Tr'); 
+    $this->SetLineWidth(0.2);
+    $this->SetDrawColor(0);
+    $this->_setTextRendering(0);
+    $this->_out('0 Tr');
   }
   else
-  { 
-    $this->SetLineWidth($width); 
-    $this->SetDrawColor($r, $g , $b); 
+  {
+    $this->SetLineWidth($width);
+    $this->SetDrawColor($r, $g , $b);
     $this->_out('2 Tr'); //Fixed
-  } 
+  }
 }
 
 //function Circle() thanks to Olivier PLATHEY
@@ -1406,7 +1406,7 @@ function Image($file,$x,$y,$w=0,$h=0,$type='',$link='',$paint=true)
 		$y += 5;
 	}
 	//Avoid drawing out of the page. //EDITEI
-	if ( ($y + $h) > $this->fh ) 
+	if ( ($y + $h) > $this->fh )
 	{
 		$this->AddPage();
 		$y = $tMargin + 10; // +10 to avoid drawing too close to border of page
@@ -1441,7 +1441,7 @@ function DottedRect($x=100,$y=150,$w=50,$h=50)
   $y = ($this->h-$y)*$this->k;
   $w *= $this->k ;
   $h *= $this->k ;// - h?
-   
+
   $herex = $x;
   $herey = $y;
 
@@ -1450,7 +1450,7 @@ function DottedRect($x=100,$y=150,$w=50,$h=50)
   $this->FillColor = $this->DrawColor;
   $this->FillColor = str_replace('RG','rg',$this->FillColor);
   $this->_out($this->FillColor);
- 
+
   while ($herex < ($x + $w)) //draw from upper left to upper right
   {
   $this->DrawDot($herex,$herey);
@@ -1484,9 +1484,9 @@ function DottedRect($x=100,$y=150,$w=50,$h=50)
 function DrawDot($x,$y) //center x y
 {
   $op = 'B'; // draw Filled Dots
-  //F == fill //S == stroke //B == stroke and fill 
+  //F == fill //S == stroke //B == stroke and fill
   $r = 0.5 * $this->k;  //raio
-  
+
   //Start Point
   $x1 = $x - $r;
   $y1 = $y;
@@ -1495,7 +1495,7 @@ function DrawDot($x,$y) //center x y
   $y2 = $y;
   //Auxiliar Point
   $x3 = $x;
-  $y3 = $y + (2*$r);// 2*raio to make a round (not oval) shape  
+  $y3 = $y + (2*$r);// 2*raio to make a round (not oval) shape
 
   //Round join and cap
   $s="\n".'1 J'."\n";
@@ -2207,8 +2207,8 @@ function _parsepng($file)
 }
 
 function _parsegif($file) //EDITEI - GIF support is now included
-{ 
-	//Function by Jérôme Fenal
+{
+	//Function by Jï¿½rï¿½me Fenal
 	require_once(RELATIVE_PATH.'gif.php'); //GIF class in pure PHP from Yamasoft (http://www.yamasoft.com/php-gif.zip)
 
 	$h=0;
@@ -2256,7 +2256,7 @@ function _parsegif($file) //EDITEI - GIF support is now included
 		return array( 'w'=>$w, 'h'=>$h, 'cs'=>$colspace, 'bpc'=>8, 'f'=>'FlateDecode', 'pal'=>$pal, 'trns'=>$trns, 'data'=>$data);
 	} else {
 		return array( 'w'=>$w, 'h'=>$h, 'cs'=>$colspace, 'bpc'=>8, 'pal'=>$pal, 'trns'=>$trns, 'data'=>$data);
-	} 
+	}
 }
 
 function _freadint($f)
