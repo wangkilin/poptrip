@@ -1,6 +1,14 @@
 <?php
 
 define('APP_NAME', 'app');
+$appName = isset($_REQUEST['app']) ? strtolower($_REQUEST['app']) : null;
+switch ($appName) {
+    case 'poptrip':
+        break;
+
+    default:
+        break;
+}
 define('APP_PATH', './app/');
 define('APP_DEBUG', true);
 

@@ -86,6 +86,7 @@ class IndexAction extends Action
                 $dbLrcModel->add($contentData);
             }
         }
+        fclose($fp);
         return ;
     }
 
