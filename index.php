@@ -1,19 +1,22 @@
 <?php
-
+define('DS', DIRECTORY_SEPARATOR);
+define('WEB_ROOT_PATH', dirname(__FILE__).DS);
 define('APP_NAME', 'Apps');
 $appName = isset($_REQUEST['app']) ? strtolower($_REQUEST['app']) : null;
 switch ($appName) {
     case 'poptrip':
         define('APP_PATH', './Apps/PopTrip/');
-        define('')
+        define('APP_SITE_NAME', 'PopTrip');
         break;
 
     case 'edulong':
         define('APP_PATH', './Apps/EduLong/');
+        define('APP_SITE_NAME', 'EduLong');
         break;
 
     default:
         define('APP_PATH', './Apps/PopNic/');
+        define('APP_SITE_NAME', 'PopNic');
         break;
 }
 //define('APP_PATH', './app/');

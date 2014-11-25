@@ -1,8 +1,11 @@
 <?php
 $appConfigParameters = array();
-if (is_file(APP))
-$appConfigParameters = include();
-return array(
+$siteConfigFile = CONF_PATH . DS . APP_SITE_NAME . DS . 'config.php';
+if (is_file($siteConfigFile)) {
+    $appConfigParameters = include($siteConfigFile);
+}
+
+$globalConfig = array(
         'DEFAULT_CHARSET'       => 'utf-8', //
         //'DEFAULT_THEME' => 'my_theme',
 
@@ -27,7 +30,7 @@ return array(
         /* DB setting */
         'DB_TYPE'               => 'mysql',     //
         'DB_HOST'               => 'localhost', //
-        'DB_NAME'               => 'pop',          //
+        'DB_NAME'               => 'test',          //
         'DB_USER'               => 'root',      //
         'DB_PWD'                => '',          //
         'DB_PORT'               => '',        //
@@ -43,4 +46,7 @@ return array(
 
 );
 
+return array_merge($globalConfig, $appConfigParameters);
+
+/* EOF */
 /* EOF */
