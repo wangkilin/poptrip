@@ -9,8 +9,8 @@ $globalConfig = array(
         'DEFAULT_CHARSET'       => 'utf-8', //
         //'DEFAULT_THEME' => 'my_theme',
 
-        'APP_GROUP_LIST' => 'Index,Admin,DataManager,Test', // enable app group. there is no Space between group names
-        'DEFAULT_GROUP' => 'Index', // default group
+        'APP_GROUP_LIST' => 'Home,Admin,DataManager,Test', // enable app group. there is no Space between group names
+        'DEFAULT_GROUP' => 'Home', // default group
         //'APP_GROUP_MODE' => 1, //
         //'APP_GROUP_PATH' => 'Modules', //
 
