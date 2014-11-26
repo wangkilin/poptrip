@@ -18,12 +18,13 @@ switch ($appName) {
         define('APP_PATH', '../Apps/PopNic/');
         define('APP_SITE_NAME', 'PopNic');
         define('TMPL_PATH', APP_PATH.'Lib/Tpl/');
+        define('APP_THEME', APP_SITE_NAME);
         break;
 }
 //define('APP_PATH', './app/');
 define('APP_DEBUG', true);
 define('RUNTIME_PATH', '../Temp/' . APP_SITE_NAME . '/');
-define('CONF_PATH', '../Config/');
+define('CONF_PATH', '../Config/'.APP_SITE_NAME.DS);
 define('COMMON_PATH', '../Common/');
 
 define('MY_CLASS_PATH', WEB_ROOT_PATH.'../Libs/Classes/');
