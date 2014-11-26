@@ -1,11 +1,6 @@
 <?php
-$appConfigParameters = array();
-$siteConfigFile = CONF_PATH . DS . APP_SITE_NAME . DS . 'config.php';
-if (is_file($siteConfigFile)) {
-    $appConfigParameters = include($siteConfigFile);
-}
 
-$globalConfig = array(
+RETURN array(
         'DEFAULT_CHARSET'       => 'utf-8', //
         //'DEFAULT_THEME' => 'my_theme',
 
@@ -16,10 +11,10 @@ $globalConfig = array(
 
         // template config
         'TMPL_VAR_IDENTIFY' => '', // 'array' or 'obj'
-        'TMPL_FILE_DEPR' => '_' , // the separator used in template file between Module name and Action name
+        'TMPL_FILE_DEPR' => '/' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
         'TPML_PARSE_STRING' => array(
-                '__PUBLIC__' => __ROOT__ . '/' . APP_NAME . '/Tpl/Admin/Public'
+              //  '__PUBLIC__' => __ROOT__ . '/' . APP_NAME . '/Tpl/Admin/Public'
         ),
         'URL_HTML_SUFFIX' => '.html',
         'TMPL_PATH' => 'app/Tpl/',
@@ -46,7 +41,5 @@ $globalConfig = array(
 
 );
 
-return array_merge($globalConfig, $appConfigParameters);
 
-/* EOF */
 /* EOF */

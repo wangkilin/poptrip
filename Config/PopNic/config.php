@@ -1,6 +1,12 @@
 <?php
-return array(
+$globalConfigFile = CONF_PATH . '..' . DS . 'config.php';
+if (is_file($globalConfigFile)) {
+    $globalConfig = include($globalConfigFile);
+}
+
+$appConfigParameters = array(
         'DEFAULT_CHARSET'       => 'utf-8', //
+        'APP_THEME'             => '',
         //'DEFAULT_THEME' => 'my_theme',
 
         //'APP_GROUP_LIST' => 'Index', // enable app group. there is no Space between group names
@@ -12,8 +18,8 @@ return array(
         'TMPL_VAR_IDENTIFY' => '', // 'array' or 'obj'
         'TMPL_FILE_DEPR' => '_' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
-        'TPML_PARSE_STRING' => array(
-                '__PUBLIC__' => __ROOT__ . '/' . APP_NAME . '/Tpl/Admin/Public'
+        'TMPL_PARSE_STRING' => array(
+                '__PUBLIC__' => __ROOT__ ,
         ),
         'URL_HTML_SUFFIX' => '.html',
         'TMPL_PATH' => 'app/Tpl/',
@@ -39,5 +45,6 @@ return array(
  //'SESSION_TYPE' => 'DB',
 
 );
+return array_merge($globalConfig, $appConfigParameters);
 
 /* EOF */
