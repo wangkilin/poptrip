@@ -17,6 +17,7 @@ switch ($appName) {
     default:
         define('APP_PATH', '../Apps/PopNic/');
         define('APP_SITE_NAME', 'PopNic');
+        define('TMPL_PATH', APP_PATH.'Lib/Tpl/');
         break;
 }
 //define('APP_PATH', './app/');

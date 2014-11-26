@@ -16,7 +16,7 @@ $globalConfig = array(
 
         // template config
         'TMPL_VAR_IDENTIFY' => '', // 'array' or 'obj'
-        'TMPL_FILE_DEPR' => '_' , // the separator used in template file between Module name and Action name
+        'TMPL_FILE_DEPR' => '/' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
         'TPML_PARSE_STRING' => array(
                 '__PUBLIC__' => __ROOT__ . '/' . APP_NAME . '/Tpl/Admin/Public'
