@@ -17,10 +17,10 @@ switch ($appName) {
     default:
         define('APP_PATH', '../Apps/PopNic/');
         define('APP_SITE_NAME', 'PopNic');
-        define('TMPL_PATH', APP_PATH.'Tpl/');
-        define('APP_THEME', APP_SITE_NAME);
         break;
 }
+define('TMPL_PATH', APP_PATH.'Tpl/');
+define('APP_THEME', APP_SITE_NAME);
 //define('APP_PATH', './app/');
 define('APP_DEBUG', true);
 define('RUNTIME_PATH', '../Temp/' . APP_SITE_NAME . '/');

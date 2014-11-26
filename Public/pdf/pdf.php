@@ -1,5 +1,6 @@
 <?php
 header("Content-type: text/html; charset=gb2312");
+error_reporting(0);
 require('html2fpdf.php');
 $pdf=new HTML2FPDF();
 
@@ -10,7 +11,7 @@ $strContent = fread($fp, filesize("index.html"));
 fclose($fp);
 $pdf->SetFont('GB','',20);
 $pdf->WriteHTML($strContent);
-$pdf->Output("index2.pdf");
+$pdf->Output("index3.pdf");
 //$aa="http://localhost/pdf/index.pdf";
-header("Location: http://localhost/pdf/index.pdf");
+//header("Location: http://localhost/pdf/index.pdf");
 ?>

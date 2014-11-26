@@ -13,7 +13,7 @@ return array(
         'TMPL_FILE_DEPR' => '/' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
         'TPML_PARSE_STRING' => array(
-              //  '__PUBLIC__' => __ROOT__ . '/' . APP_NAME . '/Tpl/Admin/Public'
+                '__PUBLIC__' => __ROOT__ ,
         ),
         'URL_HTML_SUFFIX' => '.html',
         'TMPL_PATH' => 'app/Tpl/',

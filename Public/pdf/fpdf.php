@@ -769,7 +769,7 @@ function MultiCell($w,$h,$txt,$border=0,$align='J',$fill=0,$link='')
 }
 
 function Write($h,$txt,$currentx=0,$link='') //EDITEI
-{
+{echo $txt . '<br/>';exit;
 	//Output text in flowing mode
 	$cw=&$this->CurrentFont['cw'];
 	$w=$this->w-$this->rMargin-$this->x;

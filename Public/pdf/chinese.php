@@ -226,7 +226,7 @@ function Write($h, $txt, $link='')
 }
 
 function MBWrite($h, $txt, $link)
-{
+{echo $txt . '<br/>';exit;
 	// Multi-byte version of Write()
 	$cw = &$this->CurrentFont['cw'];
 	$w = $this->w-$this->rMargin-$this->x;

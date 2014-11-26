@@ -5,8 +5,8 @@ if (is_file($globalConfigFile)) {
 }
 
 $appConfigParameters = array(
-        //'APP_GROUP_LIST' => 'Index', // enable app group. there is no Space between group names
-        //'DEFAULT_GROUP' => 'Index', // default group
+        'APP_GROUP_LIST' => 'Home,Student,Parent,Teacher', // enable app group. there is no Space between group names
+        'DEFAULT_GROUP' => 'Home', // default group
         'APP_GROUP_MODE' => 0, //
         //'APP_GROUP_PATH' => 'Modules', //
 
