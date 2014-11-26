@@ -15,8 +15,8 @@
 		<?php }?>
 	</head>
 	<body>
-	<include file="Layout:head" />
+	<include file="./Layout/head" />
 	{__CONTENT__}
-	<include file="Layout:foot" />
+	<include file="./Layout/foot" />
     </body>
 </html>

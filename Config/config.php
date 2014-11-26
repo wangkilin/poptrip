@@ -1,6 +1,5 @@
 <?php
-
-RETURN array(
+return array(
         'DEFAULT_CHARSET'       => 'utf-8', //
         //'DEFAULT_THEME' => 'my_theme',
 

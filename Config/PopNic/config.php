@@ -16,7 +16,7 @@ $appConfigParameters = array(
 
         // template config
         'TMPL_VAR_IDENTIFY' => '', // 'array' or 'obj'
-        'TMPL_FILE_DEPR' => '_' , // the separator used in template file between Module name and Action name
+        'TMPL_FILE_DEPR' => '/' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
         'TMPL_PARSE_STRING' => array(
                 '__PUBLIC__' => __ROOT__ ,
@@ -39,7 +39,7 @@ $appConfigParameters = array(
 
         'LOAD_EXT_CONFIG' => 'thirdParty', //
         'APP_AUTOLOAD_PATH' => '@.Pintag,@.Pinlib,@.ORG', //
-        'LOAD_EXT_FILE'=>'AppTools',
+        'LOAD_EXT_FILE'=>'editFormHelper',
 
  // session
  //'SESSION_TYPE' => 'DB',
