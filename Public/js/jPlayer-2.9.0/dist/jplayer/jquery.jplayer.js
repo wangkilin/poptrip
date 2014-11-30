@@ -1897,6 +1897,7 @@
 				this.css.jq.seekBar.addClass("jp-seeking-bg");
 			}
 			this.addStateClass('seeking');
+			console.debug('seeking');
 		},
 		_seeked: function() {
 			if(this.css.jq.seekBar.length) {

@@ -1,0 +1,64 @@
+/* 通用样式 */
+a,a.selected:hover,.lnk_clr{color:#516484;}
+a:hover{color:#1C6EC8;}
+td{color:#666762;}
+.hit_clr{color:#5263B1;}
+.border{border-color:#4C6887;}
+.separa{border-color:#b5c9e2;}
+.bdy_bg{background-color:#ffffff;}
+.nav_bg{background-color:#DAE7FD;}
+/* 播放器背景图片 */
+.pic{background:url(img/top.gif?t=20081229) no-repeat;}
+.player,.bottom{background:url(img/top_bg.gif) repeat-x left top;}
+.bottom{background-position:left -10px;}
+/* 播放按钮效果 */
+.prev{background-position:0px -8px;}
+.prev:hover{background-position:0px -51px;}
+.next{background-position:-90px -8px;}
+.next:hover{background-position:-90px -51px;}
+.play{background-position:-38px 0px;}
+.play:hover{background-position:-38px -43px;}
+.pause{background-position:-434px -43px;}
+.pause:hover{background-position:-481px -43px;}
+.stop{background-position:-529px -7px;}
+.stop:hover{background-position:-529px -50px;}
+.mode{background-position:-333px -45px;}
+.mode:hover{background-position:-383px -45px;}
+.lrc{background-position:-211px -45px;}
+.lrc:hover{background-position:-272px -45px;}
+.repeat_off{background-position:-301px -45px;}
+.repeat_off:hover{background-position:-301px -64px;}
+.random_off{background-position:-323px -45px;}
+.random_off:hover{background-position:-323px -64px;}
+.repeat_on{background-position:-348px -45px;}
+.repeat_on:hover{background-position:-348px -64px;}
+.random_on{background-position:-370px -45px;}
+.random_on:hover{background-position:-370px -64px;}
+/* 声音按钮效果 */
+.sound{background-position:-124px -15px;}
+.sound_up,.sound_down{background-position:100px;}
+.sound_down:hover{background-position:-124px -58px;}
+.sound_up:hover{background-position:-187px -58px;}
+.sound_ctrl{background-position:-143px -58px;}
+.sound_ctrl:hover{background-position:-157px -58px;}
+/* 播放信息显示 */
+.lcd_show{background-position:-211px 0px;}
+.lcd_time{color:#bef4fe;}
+.lcd_title{color:#d3fbfb;}
+.lcd_ratio{background:url(img/music.gif) no-repeat center center;}
+.lcd_ratio_stop{background-image:url(img/music_2.gif);}
+.lcd_ratio_loading{background-image:url(img/loading.gif);}
+.process_time{color:#c7f3fc;}
+.process_off{background-color:#5aa2ae;}
+.process_on{background-color:#bcf7ff;}
+.process_ctrl{background:url(img/time_line.gif) no-repeat left center;}
+.process_ctrl:hover{background:url(img/time_line_o.gif) no-repeat left center;}
+/* 搜索 */
+.search_icon{background-position:-451px 0px;}
+.search_icon:hover{background-position:-451px -21px;}
+/* 菜单 */
+.item_cur{background-position:-208px -72px;}
+/* 列表显示区域 */
+.list_case,.lrc_case{scrollbar-face-color:#f2f5f8;scrollbar-highlight-color:#a5b8d1;scrollbar-shadow-color:#a5b8d1;scrollbar-3dlight-color:#ffffff;scrollbar-arrow-color:#a5b8d1;scrollbar-track-color:#ffffff;scrollbar-darkshadow-color:#ffffff;}
+.evn{background-color:#ffffff;}
+.odd{background-color:#f6f9fe;}

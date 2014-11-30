@@ -1,8 +1,5 @@
 <?php
-function getMethods($object)
-{
-    return (get_class_methods($object));
-}
+
 class IndexAction extends Action
 {
     private $_unCallMethods = array (
@@ -14,9 +11,13 @@ class IndexAction extends Action
   15 => '__call',
   20 => '__destruct',
 );
+    protected function getMethods($object)
+    {
+        return (get_class_methods($object));
+    }
     protected function _initialize()
     {
-        $methods = getMethods($this);
+        $methods = $this->getMethods($this);
         $reflectionClass = new ReflectionClass($this);
         $methods = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
 
@@ -69,21 +70,27 @@ class IndexAction extends Action
         $fp = fopen($fileInfo['filePath'], 'r');
         $dbFileModel = M('lrc_file');
         $dbLrcModel = M('lrc_content');
-        $fileData = array('file_name'=>$filename,
-                          'mp3_file_path'=>substr($fileInfo['filePath'], 0, -4) .'.mp3',
+        $dbFileModel->query('set names "utf8"');
+        $fileData = array('file_name' => mb_convert_encoding($filename, 'utf-8', 'gb2312'),
+                          'mp3_file_path'=>mb_convert_encoding(substr($fileInfo['filePath'], 0, -4), 'utf-8', 'gb2312') .'.mp3',
 
                           'category_id'=>$categoryId);
         $fileId = $dbFileModel->add($fileData);
+        $previousContent = null;
         while(!feof($fp)) {
             $line=fgets($fp);
             preg_match('/\[(.*)\](.*)/', $line, $match);
             if ($match) {
                 $time = $match[1];
-                $content = $match[2];
+                $content = trim($match[2]);
+                if ($content==='' && $previousContent==='') {
+                    continue;
+                }
                 $contentData = array('start_time'=>$time,
                         'line_content'=>$content,
                         'file_id'=>$fileId);
                 $dbLrcModel->add($contentData);
+                $previousContent = $content;
             }
         }
         fclose($fp);
@@ -154,14 +161,14 @@ class IndexAction extends Action
         $cdInfo = array(
                 'category_id'    => $categoryId,
                 'en_name'        => $metaInfo['name_en'],
-                'cn_name'        => $metaInfo['name_cn'],
+                'cn_name'        => mb_convert_encoding($metaInfo['name_cn'], 'utf-8', 'gb2312'),
                 'author_en'      => $metaInfo['author_en'],
-                'author_cn'      => $metaInfo['author_cn'],
+                'author_cn'      => mb_convert_encoding($metaInfo['author_cn'], 'utf-8', 'gb2312'),
                 'grade'          => $grade[0],
                 'cd_length'      => $length[0],
                 'stars'          => $star[0],
                 'intro_en'       => $metaInfo['introduction_en'],
-                'intro_cn'       => $metaInfo['introduction_cn'],
+                'intro_cn'       => mb_convert_encoding($metaInfo['introduction_cn'], 'utf-8', 'gb2312'),
 
         );
         M('lrc_cd_info')->add($cdInfo);

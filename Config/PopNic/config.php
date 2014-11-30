@@ -16,7 +16,7 @@ $appConfigParameters = array(
         ),
 
         /* DB setting */
-        'DB_NAME'               => 'pop',          //
+        'DB_NAME'               => 'dict',          //
         'DB_PREFIX'             => '',    //
 
         'LOAD_EXT_FILE'=>'editFormHelper',

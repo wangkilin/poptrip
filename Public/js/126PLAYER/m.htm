@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>网易音乐盒 - 带头大哥777</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+	<meta name="Keywords" content="音乐盒 在线音乐盒 网易博客音乐盒 网易音乐盒 网易音乐 网易" />
+	<link type="text/css" rel="stylesheet" href="http://b.bst.126.net/style/musictune/main/main.css?002"/>
+    <link type="text/css" rel="stylesheet" href="http://b.bst.126.net/style/musictune/main/layer.css?001" />
+	<link type="text/css" rel="stylesheet" href="http://b.bst.126.net/style/musictune/style/0/style.css?001"/>
+    <script type="text/javascript">try{document.execCommand('BackgroundImageCache',false,true);}catch(e){}</script>
+  </head>
+  <body lang="zh" id="blog-163-com-musicbox">
+  <div class="body border bdy_bg" id="box-body">
+    <div class="area-0 border player">
+      <div class="a0-btns">
+        <a class="btn0 spc pic prev" hidefocus="true" href="#" id="$_bt_prev" title="上一首" onclick="return false;">&nbsp;</a> 
+        <a class="btn1 spc pic next" hidefocus="true" href="#" id="$_bt_next" title="下一首" onclick="return false;">&nbsp;</a>
+        <a class="btn2 spc pic pause" hidefocus="true" href="#" id="$_bt_pause" title="暂停" onclick="return false;">&nbsp;</a>
+        <a class="btn2 spc pic play" hidefocus="true" href="#" id="$_bt_play" title="播放" onclick="return false;">&nbsp;</a>
+		<a class="btn6 spc pic stop" hidefocus="true" href="#" id="$_bt_stop" title="停止" onclick="return false;">&nbsp;</a>
+        <a class="btn5 pic lrc" hidefocus="true" href="#" id="$_bt_lrc" title="歌词" onclick="return false;">打开歌词</a>
+        <a class="btn7 pic mode" hidefocus="true" href="#" id="$_bt_mode" title="模式" onclick="return false;">顺序</a>
+      </div>
+      <div class="a0-snds pic sound">
+		<div class="a0-outer" id="$_volume_track"><a class="btn2 spc pic sound_ctrl" hidefocus="true" href="#" id="$_volume_handle" onclick="return false;">&nbsp;</a></div>
+        <a class="btn0 spc pic sound_down" hidefocus="true" href="#" id="$_bt_sound_min" title="最小音量" onclick="return false;">&nbsp;</a>
+        <a class="btn1 spc pic sound_up" hidefocus="true" href="#" id="$_bt_sound_max" title="最大音量" onclick="return false;">&nbsp;</a>
+      </div>
+      <div class="a0-lcd pic lcd_show">
+        <div class="lcd_time" id="$_music_cur_pos">00:00</div>
+		<div class="spc lcd_ratio lcd_ratio_stop" id="$_music_state">&nbsp;</div>
+		<div class="lcd_title"><marquee direction="left" scrolldelay="150" id="$_music_cur_title">&nbsp;</marquee></div>
+        <div class="lcd_process">
+          <div class="spc process_off" id="$_play_track"><div class="spc process_on" id="$_play_buffer">&nbsp;</div></div>
+          <a class="spc process_ctrl" hidefocus="true" href="#" id="$_play_handle" onclick="return false;">&nbsp;</a>
+          <div class="process_time" id="$_music_cur_duration">00:00</div>
+        </div>
+      </div>
+      <div class="a0-sech search" style="display:none;"><form id="$_search_form" action="http://mp3.163.com/iting/search/" target="_blank"><input id="$_search_key" name="key" class="text" type="text" onkeypress="musicManager.search(event||window.event);"/></form><a class="spc pic search_icon" hidefocus="true" title="搜索" href="#" onclick="musicManager.search();return false;">&nbsp;</a></div>
+      <div id="$_search_suggest"></div>
+      <div class="a0-lnk links" id="top-link">
+			<a href="http://blog.163.com/wangkilin@126/" target="_blank">wangkilin@126</a>
+				<span>|</span><a href="http://blog.163.com/wangkilin@126/m/" >我的音乐盒</a><span>|</span><a href="#" id="$_exit">退出</a>
+      </div>
+    </div>
+    <div class="area-1 separa">
+      <div class="a1-nav nav_bg">
+        <div class="nav-list nav-top"><div id="album_item_navigator" style="display:none;" class="item title"><div class="ct"><a href="#" onclick="musicManager.selectAlbum('navigator');return false;">随心听听</a></div><div class="icn">&nbsp;</div></div></div>
+        <div class="nav-sep spc separa" style="display:none;">&nbsp;</div>
+    	<div class="nav-list" style="display:none;"><div id="album_item_test" class="item title"><div class="ct"><a href="#" onclick="musicManager.selectAlbum('test');return false;">音乐试听</a></div><div class="icn">&nbsp;</div></div></div>
+    	<div class="nav-sep spc separa" style="display:none;">&nbsp;</div>
+        <div class="nav-title" id="$_title_user"><a class="ct" hidefocus="true" href="#" onclick="musicManager.showAlbumGroup('$_title_user','$_album_list_user');return false;">带头大哥77... 的专辑</a><a class="nav-mng" hidefocus="true" href="#" id="$_bt_album_manager" style="display:none;" onclick="return false;">管理</a></div>
+        <div id="$_album_list_user" style="display:none">
+	        <a class="nav-pg separa pg-up" hidefocus="true" href="#" onclick="musicManager.movePageUp();return false;" id="$_bt_album_up">向上翻页</a>
+	        <div class="nav-list" id="$_album_list">&nbsp;</div>
+	        <a class="nav-pg separa pg-dn" hidefocus="true" href="#" onclick="musicManager.movePageDown();return false;" id="$_bt_album_down">向下翻页</a>
+        </div>
+       <div style="display:none">
+        <div class="nav-sep spc separa">&nbsp;</div>
+        <div class="nav-title" id="$_title_system"><a class="ct" hidefocus="true" href="#" onclick="musicManager.showAlbumGroup('$_title_system','$_album_list_system');return false;">排行榜</a></div>
+        <div class="nav-list" style="display:none" id="$_album_list_system">&nbsp;</div>
+       </div>
+      </div>
+      <div class="a1-list" id="$_music_list_zone">
+        <div class="a1-head separa">
+          <table cellpadding="0" cellspacing="0" border="0"><tr>
+            <td class="col-0">&nbsp;</td><td class="col-1">歌曲名</td><td class="col-2">删除</td><td class="col-3">歌手</td><td class="col-4">时间</td>
+            <td class="col-6 no-lrc">评论</td><td class="col-7 no-lrc">评价</td><td class="col-8 no-lrc">人气</td></tr></table>
+        </div>
+        <div class="msc-list list_case" id="$_music_list">
+        </div>
+        <div style="display:none;">
+          <div class="a1-act" id="$_add_music_zone" style="display:none;">
+        </div>
+        <a href="#" id="$_clear_music_list" hidefocus="true" onclick="musicManager.clearMusicList();return false;">清空列表</a>
+        <input class="button" type="button" value="添加音乐" onclick="musicManager.showAddMusicLayer();"/>&nbsp;&nbsp;<a href="#" hidefocus="true" onclick="musicManager.showMusicCustomLayer();return false;">自定义添加</a></div>
+        <div class="a1-act" id="$_collect_album_zone" style="display:none;"><input class="button" type="button" value="收藏专辑" onclick="musicManager.collectMusicAlbum();"/>&nbsp;&nbsp;<a href="#" hidefocus="true" onclick="musicManager.visitMusicAlbum();return false;">专辑详情&gt;&gt;</a></div>
+		<div class="a1-heart">
+			<div><input class="button btn_chg" type="button" value="换换听" onclick="musicManager.refreshNavAlbum();"/><span><input id="heart_cb" class="cb" type="checkbox"/><label for="heart_cb">自动换页</label></span><!--<input class="button" type="button" value="<"/><span class="scr">智能推荐</span><input class="button" type="button" value=">"/>--></div>
+			<div><span>想得到更好的推荐？</span>快来做<a href="#" onclick="musicManager.testMusicFavour();return false;">音乐测试&gt;&gt;</a></div>
+		</div>
+		<div class="a1-lrc separa">
+          <div class="lrc-list hit_clr lrc_case" id="$_lrc_zone">
+          </div>
+          <div class="lrc-scrl" id="$_lrc_track"><div class="spc" id="$_lrc_handle">&nbsp;</div></div>
+        </div>
+      </div><br class="spc" />
+    </div>
+    <div class="area-2 banner" style="display:none"> <a href="http://mp3.163.com/iting/player/player.html" title="进入网易音乐" class="musicpage" target="_blank">进入网易音乐</a> <a href="http://dl.mp3.163.com/stable/NEMusicBox_v1.1.exe" title="下载网易音乐盒" class="musicbox" target="_blank">下载音乐盒</a> </div>
+    <div class="area-3 border bottom">
+       <span class="hit_clr">音乐服务由<a href="http://music.163.com" target="_blank">网易云音乐</a>提供</span>
+       <label>推荐给博友：</label><a hidefocus="true" href="#" onclick="musicManager.copyUrl('$_copy_zone');return false;">复制地址</a><a hidefocus="true" href="#" onclick="musicManager.shareAlbum();return false;">发送消息</a>
+    </div>
+  </div>
+  <div id="$_copy_zone" class="empty" style="visibility:hidden;"></div>
+  <div id="debug"></div>
+<script type="text/javascript" src="http://b1.bst.126.net/0520006/js/gen/musicbox_base.js"></script>
+<script type="text/javascript" src="http://b1.bst.126.net/0520006/js/gen/ai_music_tune.js"></script>
+  <script type="text/javascript" src="http://music.ph.126.net/ph.js?001"></script>
+  <script>
+    document.domain = "163.com";
+  	var exit = document.getElementById('$_exit');
+	if(exit){
+		exit.href="http://blog.163.com/exit.do?target="+encodeURIComponent(window.location.href);
+	}
+	var UD = {
+     hostId : 24772072
+    };   
+	var album_list = [{"coverPhBigHeight":-1,"collectCount":1,"createTime":1261612540494,"tag":"","musicCount":6,"id":"fks_083064082084081067084083074065080081086065084081084","mainCommentCount":0,"seqStyle":"1311929057,1349017001,1349017006,1349017004,1349017003,1337452218","rank":4,"coverPhBigUrl":"","voteRank":16,"nickName":"带头大哥777","description":"","name":"绝迹江湖","tagIds":"","userId":24772072,"userName":"dtdg777","popularity":532,"coverPhBigId":-1,"commentCount":0,"coverPhSmallUrl":"","voteUserCount":4,"coverPhSmallId":-1,"coverPhBigWidth":-1,"musicList":[]},{"coverPhBigHeight":-1,"collectCount":0,"createTime":-1,"tag":"","musicCount":3,"id":"0","mainCommentCount":0,"seqStyle":"1287803514,1287816397,1259217831","rank":3,"coverPhBigUrl":"","voteRank":0,"nickName":"","description":"","name":"默认专辑","tagIds":"","userId":-1,"userName":"","popularity":0,"coverPhBigId":-1,"commentCount":0,"coverPhSmallUrl":"","voteUserCount":0,"coverPhSmallId":-1,"coverPhBigWidth":-1,"musicList":[]}];
+	init_musicbox('dtdg777','wangkilin@126','wangkilin@126','-1000',album_list);
+  </script>
+  </body>
+</html>
