@@ -866,6 +866,7 @@
 			this.options.volume = this._limitValue(this.options.volume, 0, 1); // Limit volume value's bounds.
 
 			// Create the formats array, with prority based on the order of the supplied formats string
+			// supplied: "mp3", 
 			$.each(this.options.supplied.toLowerCase().split(","), function(index1, value1) {
 				var format = value1.replace(/^\s+|\s+$/g, ""); //trim
 				if(self.format[format]) { // Check format is valid.
@@ -883,9 +884,10 @@
 			});
 
 			// Create the solutions array, with prority based on the order of the solution string
+			// solution: "html, flash",
 			$.each(this.options.solution.toLowerCase().split(","), function(index1, value1) {
 				var solution = value1.replace(/^\s+|\s+$/g, ""); //trim
-				if(self.solution[solution]) { // Check solution is valid.
+				if(self.solution[solution]) { // Check solution is valid.  //self.solutions = []
 					var dupFound = false;
 					$.each(self.solutions, function(index2, value2) { // Check for duplicates
 						if(solution === value2) {
@@ -946,17 +948,63 @@
 				jq: undefined
 			});
 
+//			$.each(
+//					[
+//						'ready',
+//						'setmedia', // Fires when the media is set
+//						'flashreset', // Similar to the ready event if the Flash solution is set to display:none and then shown again or if it's reloaded for another reason by the browser. For example, using CSS position:fixed on Firefox for the full screen feature.
+//						'resize', // Occurs when the size changes through a full/restore screen operation or if the size/sizeFull options are changed.
+//						'repeat', // Occurs when the repeat status changes. Usually through clicks on the repeat button of the interface.
+//						'click', // Occurs when the user clicks on one of the following: poster image, html video, flash video.
+//						'error', // Event error code in event.jPlayer.error.type. See $.jPlayer.error
+//						'warning', // Event warning code in event.jPlayer.warning.type. See $.jPlayer.warning
+//
+//						// Other events match HTML5 spec.
+//						'loadstart',
+//						'progress',
+//						'suspend',
+//						'abort',
+//						'emptied',
+//						'stalled',
+//						'play',
+//						'pause',
+//						'loadedmetadata',
+//						'loadeddata',
+//						'waiting',
+//						'playing',
+//						'canplay',
+//						'canplaythrough',
+//						'seeking',
+//						'seeked',
+//						'timeupdate',
+//						'ended',
+//						'ratechange',
+//						'durationchange',
+//						'volumechange'
+//					],
+//					function() {
+//						$.jPlayer.event[ this ] = 'jPlayer_' + this;
+//					}
 			// Register listeners defined in the constructor
 			$.each($.jPlayer.event, function(eventName,eventType) {
 				if(self.options[eventName] !== undefined) {
+					window.console && window.console.debug(eventName);
+					window.console && window.console.debug(eventType);
 					self.element.bind(eventType + ".jPlayer", self.options[eventName]); // With .jPlayer namespace.
 					self.options[eventName] = undefined; // Destroy the handler pointer copy on the options. Reason, events can be added/removed in other ways so this could be obsolete and misleading.
 				}
 			});
 
+//			format: { // Static Object
+//				mp3: {
+//					codec: 'audio/mpeg',
+//					flashCanPlay: true,
+//					media: 'audio'
+//				},
 			// Determine if we require solutions for audio, video or both media types.
 			this.require.audio = false;
 			this.require.video = false;
+			// self.formats.push('mp3');
 			$.each(this.formats, function(priority, format) {
 				self.require[self.format[format].media] = true;
 			});
@@ -1031,6 +1079,7 @@
 			this.html.desired = false;
 			this.aurora.desired = false;
 			this.flash.desired = false;
+			// solutions: "html, flash",
 			$.each(this.solutions, function(solutionPriority, solution) {
 				if(solutionPriority === 0) {
 					self[solution].desired = true;
@@ -1076,6 +1125,7 @@
 			this._resetGate();
 
 			// Set up the css selectors for the control and feedback entities.
+			//cssSelectorAncestor: "#jp_container_1",
 			this._cssSelectorAncestor(this.options.cssSelectorAncestor);
 			
 			// If neither html nor aurora nor flash are being used by this browser, then media playback is not possible. Trigger an error event.
@@ -2349,6 +2399,7 @@
 				this._muted(false);
 			}
 		},
+		// cssSelectorAncestor: "#jp_container_1",
 		_cssSelectorAncestor: function(ancestor) {
 			var self = this;
 			this.options.cssSelectorAncestor = ancestor;
