@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>投票管理</title>
+</head>
+<body>
+<div id="mainContent">
+  <form id="vote_form" action="" method="post">
+  <label for="vote_title">投票标题</label>
+  <input name="vote_title" id="vote_title" value="{:$voteInfo['vote_title']}"/>
+  <label for="vote_desc">描述</label>
+  <textarea name="vote_desc" id="vote_desc">{:$voteInfo['vote_desc']}
+  </textarea>
+  <label>是否公开</label>
+  <input name="is_public" type="radio" value="1" id="is_public_yes" checked="{:($voteInfo['is_public']==1?'checked':'')}"/>
+  <label for="is_public_yes">是</label>
+  <input name="is_public" type="radio" value="0" id="is_public_no" checked="{:($voteInfo['is_public']==0?'checked':'')}"/>
+  <label for="is_public_no">否</label>
+  <label for="start_time">开始日期</label>
+  <input name="start_time" id="start_time" type="text" value="{:$voteInfo['start_time']}"/>
+  <label for="end_time">开始日期</label>
+  <input name="end_time" id="end_time" type="text" value="{:$voteInfo['end_time']}"/>
+  
+  <label>选项显示</label>
+  <input name="display_style" type="radio" value="1" id="display_style_title" checked="{:($voteInfo['display_style']==1?'checked':'')}"/>
+  <label for="display_style_title">只显示标题</label>
+  <input name="display_style" type="radio" value="2" id="display_style_desc" checked="{:($voteInfo['display_style']==2?'checked':'')}"/>
+  <label for="display_style_desc">只显示内容</label>
+  <input name="display_style" type="radio" value="3" id="display_style_all" checked="{:($voteInfo['display_style']==3?'checked':'')}"/>
+  <label for="display_style_all">显示标题和内容</label>
+  
+  <input type="submit" value="保存"/>
+  <input type="reset" value="重写"/>
+  </form>
+</div>
+</body>
+</html>
