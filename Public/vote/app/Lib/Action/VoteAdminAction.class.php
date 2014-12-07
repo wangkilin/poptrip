@@ -14,14 +14,18 @@ class VoteAdminAction extends Action
     public function index()
     {
         $voteId = isset($_REQUEST['voteId']) ? $_REQUEST['voteId'] : 0;
-        if ($voteId) {
+        if ($voteId) {// 查看一个投票数据
             $voteInfo = $this->_voteModel->getVoteById($voteId);
             if ($voteInfo) {
-
+                $voteOptions = $this->_optionModel->getOptionsByVoteId($voteId);
+                $this->assign('voteInfo', $voteInfo);
+                $this->assign('voteOptions', $voteOptions);
+                $this->display('ViewVote');
             } else {
                 $url = GROUP_NAME ? (GROUP_NAME.'/'.MODULE_NAME.'/index')
                                  : (MODULE_NAME.'/index');
-                redirect($url);
+                //redirect($url);
+                $this->error('没找到ID为'.$voteId . '投票数据', $url);
             }
         } else {
             $this->_voteModel->getVote();
@@ -41,13 +45,15 @@ class VoteAdminAction extends Action
             $voteInfo['options'] = array();
             $voteInfo['options']['display_style'] = isset($_POST['display_style']) ? $_POST['display_style'] : '';
             $voteInfo['options'] = json_encode($voteInfo['options']);
-            $result = $this->_voteModel->add($voteInfo);
+            $result = $this->_voteModel->addVote($voteInfo);
+            $voteId = $this->_voteModel->getLastInsID();
             if ($result) {
-                $this->success('添加成功', U('idnex'));
+                $this->success('添加成功', U('addOptioins', array('voteId'=>$voteId)));
             } else {
                 $this->error('添加失败');
             }
         }
+        $this->assign('action', 'add');
         $this->assign('voteInfo', $voteInfo);
 
         $this->display('Edit');
@@ -72,22 +78,33 @@ class VoteAdminAction extends Action
             $where = array('vote_id' => $voteId);
             $result = $this->_voteModel->save($voteInfo, $where);
             if (false!==$result) {
-                $this->success('添加成功', U('idnex'));
+                $this->success('修改成功', U('idnex'));
             } else {
-                $this->error('添加失败');
+                $this->error('修改失败');
             }
         } else {
             $voteInfo = $this->_voteModel->getVoteById($voteId);
         }
 
         $this->assign('voteInfo', $voteInfo);
+        $this->assign('action', 'edit');
 
         $this->display('Edit');
     }
 
     public function deleteVote ()
     {
-
+        $voteId = isset($_POST['voteId']) ? intval($_POST['voteId']) : 0;
+        if (!$voteId) {
+            redirect(U('index'));
+        }
+        $result = $this->_voteModel->deleteVote($voteId);
+        if ($result) {
+            $this->_optionModel->deleteOptionsByVoteId($voteId);
+            $this->success('删除成功', 'index');
+        } else {
+            $this->error('删除失败', 'index');
+        }
     }
 
     public function getOptions ()

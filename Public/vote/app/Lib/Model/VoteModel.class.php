@@ -10,16 +10,27 @@ class VoteModel extends Model
 
     public function addVote ($params)
     {
-
+        return $this->add($params);
     }
 
-    public function getVoteById ($params)
+    public function getVoteById ($voteId)
     {
-
+        $voteInfo = $this->find($voteId);
+        return $voteInfo;
     }
 
     public function getVote ($where=array(), $orderBy=array())
     {
+        $sqlWhere = array();
+        if($where['voteId']) {
+            $sqlWhere[] = 'vote_id = ' . intval($where['voteId']);
+        }
+
+        $sql = 'SELECT * FROM ' . $this->tablePrefix . $this->tableName;
+        if ($sqlWhere) {
+            $sql = $sql . ' WHERE ' . join (' AND ', $sqlWhere);
+        }
+        return $this->query($sql);
     }
 
     public function updateVote ($voteId, $params)
