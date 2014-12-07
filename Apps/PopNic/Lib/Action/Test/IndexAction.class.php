@@ -41,6 +41,7 @@ class IndexAction extends Action
         }
 
         echo '<hr/>';
+        //$this->importLrc();
     }
     /**
      * Index

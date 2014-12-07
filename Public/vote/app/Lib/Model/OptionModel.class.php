@@ -1,7 +1,6 @@
 <?php
 class OptionModel extends Model
 {
-
     // 数据表前缀
     protected $tablePrefix  =   ' ';
     // 模型名称

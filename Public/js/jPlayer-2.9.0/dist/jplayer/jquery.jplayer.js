@@ -1850,6 +1850,7 @@
 			}
 		},
 		_updateInterface: function() {
+			window.console && console.debug(Math.random());
 			if(this.css.jq.seekBar.length) {
 				this.css.jq.seekBar.width(this.status.seekPercent+"%");
 			}
@@ -1897,7 +1898,6 @@
 				this.css.jq.seekBar.addClass("jp-seeking-bg");
 			}
 			this.addStateClass('seeking');
-			console.debug('seeking');
 		},
 		_seeked: function() {
 			if(this.css.jq.seekBar.length) {
