@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>投票</title>
+</head>
+<body>
+<div id="mainConent">
+  <p id="voteTitle">{$voteInfo['vote_title']}</p>
+  <if condition="$voteInfo['options']['display_title']==1">
+  <ul id="option_list">
+    <li class="option_title">{$optionInfo['option_title']}</li>
+  </ul>
+  <else/>
+  <table class="option_desc">
+    <tr>
+      <td>{$optionInfo['option_desc']}</td>
+    </tr>
+  </table>
+  </if>
+</div>
+</body>
+</html>
