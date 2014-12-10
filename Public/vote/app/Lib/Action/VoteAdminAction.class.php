@@ -22,13 +22,15 @@ class VoteAdminAction extends Action
                 $this->assign('voteOptions', $voteOptions);
                 $this->display('ViewVote');
             } else {
-                $url = GROUP_NAME ? (GROUP_NAME.'/'.MODULE_NAME.'/index')
+                $url = defined(GROUP_NAME)&&GROUP_NAME ? (GROUP_NAME.'/'.MODULE_NAME.'/index')
                                  : (MODULE_NAME.'/index');
-                //redirect($url);
+                $url = U($url);
+
                 $this->error('没找到ID为'.$voteId . '投票数据', $url);
             }
         } else {
-            $this->_voteModel->getVote();
+            $voteList = $this->_voteModel->getVote();
+            $this->assign('voteList', $voteList);
             $this->display('Index');
         }
     }
