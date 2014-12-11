@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>投票管理</title>
+</head>
+<body>
+	<div id="mainContent">
+		<form action="" method="post">
+			<p id="voteInfo">
+				<span>投票标题</span>
+				<span id="voteTitle">{:$voteInfo['vote_title']}</span>
+			</p>
+
+			<p>投票列表</p>
+			<p class="optionItem fixed">
+			    <i class="itemSequence">1</i>
+				<label for="option_title">标题</label>
+				<input name="option_title" type="text"
+					value="{$_option['option_title']}" />
+				<label for="option_desc">内容</label>
+				<textarea name="option_desc">{$_option['option_desc']}</textarea>
+				<i class='addOptionItem'>添加</i>
+			</p>
+			<input type="submit" value="保存" />
+			<input type="reset" value="重写" />
+		</form>
+	</div>
+</body>
+</html>

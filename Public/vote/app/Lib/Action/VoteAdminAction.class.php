@@ -50,7 +50,7 @@ class VoteAdminAction extends Action
             $result = $this->_voteModel->addVote($voteInfo);
             $voteId = $this->_voteModel->getLastInsID();
             if ($result) {
-                $this->success('添加成功', U('addOptioins', array('voteId'=>$voteId)));
+                $this->success('添加成功', U('addOptions', array('voteId'=>$voteId)));
             } else {
                 $this->error('添加失败');
             }
@@ -63,9 +63,9 @@ class VoteAdminAction extends Action
 
     public function updateVote ()
     {
-        $voteId = isset($_POST['voteId']) ? intval($_POST['voteId']) : 0;
-        if (!voteId) {
-            redirect(U('index'));
+        $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
+        if (!$voteId) {
+            $this->error('未找到指定投票信息', U('index'));
         }
         $voteInfo = array();
         if (strtoupper($_SERVER['REQUEST_METHOD'])=='POST') {
@@ -77,10 +77,10 @@ class VoteAdminAction extends Action
             $voteInfo['options'] = array();
             $voteInfo['options']['display_style'] = isset($_POST['display_style']) ? $_POST['display_style'] : '';
             $voteInfo['options'] = json_encode($voteInfo['options']);
-            $where = array('vote_id' => $voteId);
-            $result = $this->_voteModel->save($voteInfo, $where);
+            $voteInfo['vote_id'] = $voteId;
+            $result = $this->_voteModel->save($voteInfo);
             if (false!==$result) {
-                $this->success('修改成功', U('idnex'));
+                $this->success('修改成功', U('index'));
             } else {
                 $this->error('修改失败');
             }
@@ -96,16 +96,16 @@ class VoteAdminAction extends Action
 
     public function deleteVote ()
     {
-        $voteId = isset($_POST['voteId']) ? intval($_POST['voteId']) : 0;
+        $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
         if (!$voteId) {
-            redirect(U('index'));
+            $this->error('未找到指定投票信息', U('index'));
         }
         $result = $this->_voteModel->deleteVote($voteId);
         if ($result) {
             $this->_optionModel->deleteOptionsByVoteId($voteId);
-            $this->success('删除成功', 'index');
+            $this->success('删除成功', U('index'));
         } else {
-            $this->error('删除失败', 'index');
+            $this->error('删除失败', U('index'));
         }
     }
 
@@ -116,7 +116,14 @@ class VoteAdminAction extends Action
 
     public function addOptions ()
     {
-
+        $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
+        if (!$voteId) {
+            $this->error('未找到指定投票信息', U('index'));
+        }
+        $voteInfo = $this->_voteModel->getVoteById($voteId);
+        $this->assign('voteInfo', $voteInfo);
+        $this->assign('options', array());
+        $this->display('VoteOption');
     }
 
     public function updateOptions ()

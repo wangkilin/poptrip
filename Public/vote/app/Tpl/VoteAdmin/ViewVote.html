@@ -30,12 +30,6 @@
   <input name="display_style" type="radio" value="3" id="display_style_all" checked="{:($voteInfo['display_style']==3?'checked':'')}"/>
   <label for="display_style_all">显示标题和内容</label>
   
-  <label>计票设置</label>
-  <input name="display_style" type="radio" value="1" id="display_style_title" checked="{:($voteInfo['display_style']==1?'checked':'')}"/>
-  <label for="display_style_title">允许IP重复</label>
-  <input name="display_style" type="radio" value="2" id="display_style_desc" checked="{:($voteInfo['display_style']==2?'checked':'')}"/>
-  <label for="display_style_desc">允许重复投票</label>
-    
   <input type="submit" value="保存"/>
   <input type="reset" value="重写"/>
   </form>

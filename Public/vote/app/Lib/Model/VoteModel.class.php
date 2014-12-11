@@ -40,6 +40,6 @@ class VoteModel extends Model
 
     public function deleteVote ($voteId)
     {
-
+        return $this->delete(intval($voteId));
     }
 }

@@ -7,14 +7,46 @@
 <body>
 <div id="mainContent">
   
-  <div id="menuAdd">添加</div>
-  <div id="voteLisr">
+  <div id="menuAdd"><a href="{:U('addVote')}">添加</a></div>
+  <div id="voteList">
     <table>
       <tr>
-        <th></th>
+        <th>&nbsp;</th>
+        <th>标题</th>
+        <th>公开</th>
+        <th>开始</th>
+        <th>结束</th>
+        <th>属性</th>
+        <th>操作</th>
       </tr>
+      <if condition="count($voteList) gt 0">
+      <volist name='voteList' id='_vote'>
+      <tr class="{:($mod>0?'':'odd')}">
+        <td>{$i} {$_vote['vote_id']}</td>
+        <td>{$_vote['vote_title']}</td>
+        <td>{$_vote['is_public']}</td>
+        <td>{$_vote['start_time']}</td>
+        <td>{$_vote['end_time']}</td>
+        <td>{:(json_decode($_vote['vote_title'], true))}</td>
+        <td><a href="{:U('deleteVote', array('voteId'=>$_vote['vote_id']))}" 
+              onclick="return confirm('确认删除么？');">删除</a> 
+            <a href="{:U('updateVote', array('voteId'=>$_vote['vote_id']))}" 
+              >修改</a> 
+            <a href="{:U('Index/Index', array('voteId'=>$_vote['vote_id']))}" 
+              >查看</a> 
+        </td>
+      </tr>
+      <tr class="{:($mod>0?'':'odd')}">
+        <td colspan="7">
+        {$_vote['vote_desc']}
+        </td>
+      </tr>
+      </volist>
+      <else/>
       <tr>
+        <td colspan="7">没有投票数据。 <a href="{:U('addVote')}">新建</a></td>
       </tr>
+      </if>
     </table>
   </div>
 </div>
