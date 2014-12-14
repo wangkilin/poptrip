@@ -19,6 +19,7 @@
 	  </if> 
 	<elseif condition="$voteInfo['options']['display_style'] eq 2"/>
       <if condition="count($options) gt 0">
+<<<<<<< HEAD
         <div class="option_list">
             <volist name="options" id="_option">
             <div class="option_item">
@@ -42,6 +43,27 @@
             </volist>
         </div>
       </if> 
+=======
+        <ul id="option_list">
+            <volist name="options" id="_option">
+            <li class="option_title">{$optionInfo['option_title']}</li>
+            </volist>
+        </ul>
+      </if> 
+	<else />
+      <if condition="count($options) gt 0">
+        <ul id="option_list">
+            <volist name="options" id="_option">
+            <li class="option_title">{$optionInfo['option_title']}</li>
+            </volist>
+        </ul>
+      </if> 
+		<table class="option_desc">
+			<tr>
+				<td>{$optionInfo['option_desc']}</td>
+			</tr>
+		</table>
+>>>>>>> branch 'master' of https://github.com/wangkilin/poptrip
 	</if>
 </div>
 </body>

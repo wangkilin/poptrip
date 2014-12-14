@@ -26,8 +26,11 @@ class VoteModel extends Model
         } else {
             $result = array();
         }
+<<<<<<< HEAD
 
         return $result;
+=======
+>>>>>>> branch 'master' of https://github.com/wangkilin/poptrip
     }
 
     public function getVoteById ($voteId)
