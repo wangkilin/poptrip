@@ -10,7 +10,18 @@ class OptionModel extends Model
 
     public function getOptionById ($optionId)
     {
+        $optionInfo = $this->find($optionId);
+        return $optionInfo;
+    }
 
+    public function vote ($optionId)
+    {
+        $sql = 'UPDATE ' . $this->tablePrefix . $this->tableName . '
+                SET click_num = click_num + 1
+                WHERE option_id = ' . intval($optionId);
+        $result = $this->query($sql);
+
+        return $result;
     }
 
     public function getOptions ($params)
@@ -31,7 +42,12 @@ class OptionModel extends Model
     public function getOptionsByVoteId($voteId)
     {
         $params = array('voteId'=>intval($voteId));
-        return $this->getOptions($params);
+        $options = $this->getOptions($params);
+        if(! $options) {
+            $options = array();
+        }
+
+        return $options;
     }
 
     public function addOptions ($params)

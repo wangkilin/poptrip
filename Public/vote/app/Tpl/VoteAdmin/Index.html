@@ -32,8 +32,10 @@
               onclick="return confirm('确认删除么？');">删除</a> 
             <a href="{:U('updateVote', array('voteId'=>$_vote['vote_id']))}" 
               >修改</a> 
-            <a href="{:U('Index/Index', array('voteId'=>$_vote['vote_id']))}" 
+            <a href="{:U('Index', array('voteId'=>$_vote['vote_id']))}" 
               >查看</a> 
+            <a href="{:U('Index/Index', array('voteId'=>$_vote['vote_id']))}" 
+              >浏览</a> 
         </td>
       </tr>
       <tr class="{:($mod>0?'':'odd')}">

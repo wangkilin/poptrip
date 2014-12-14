@@ -3,6 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>投票管理</title>
+<script type="text/javascript" src="__PUBLIC__/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jquery-ui.min.js"></script>
 </head>
 <body>
 <div id="mainContent">
@@ -22,7 +24,7 @@
   <label for="end_time">开始日期</label>
   <input name="end_time" id="end_time" type="text" value="{:$voteInfo['end_time']}"/>
   
-  <label>选项显示</label>
+  <label>显示设置</label>
   <input name="display_style" type="radio" value="1" id="display_style_title" checked="{:($voteInfo['display_style']==1?'checked':'')}"/>
   <label for="display_style_title">只显示标题</label>
   <input name="display_style" type="radio" value="2" id="display_style_desc" checked="{:($voteInfo['display_style']==2?'checked':'')}"/>
@@ -31,10 +33,10 @@
   <label for="display_style_all">显示标题和内容</label>
   
   <label>计票设置</label>
-  <input name="display_style" type="radio" value="1" id="display_style_title" checked="{:($voteInfo['display_style']==1?'checked':'')}"/>
-  <label for="display_style_title">允许IP重复</label>
-  <input name="display_style" type="radio" value="2" id="display_style_desc" checked="{:($voteInfo['display_style']==2?'checked':'')}"/>
-  <label for="display_style_desc">允许重复投票</label>
+  <input name="count_set_duplicate" type="radio" value="1" id="count_set_duplicate_ip" checked="{:($voteInfo['count_set_duplicate']==1?'checked':'')}"/>
+  <label for="count_set_duplicate_ip">允许IP重复</label>
+  <input name="count_set_duplicate" type="radio" value="2" id="count_set_duplicate_user" checked="{:($voteInfo['count_set_duplicate']==2?'checked':'')}"/>
+  <label for="count_set_duplicate_user">允许重复投票</label>
     
   <input type="submit" value="保存"/>
   <input type="reset" value="重写"/>
