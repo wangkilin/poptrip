@@ -120,15 +120,61 @@ class VoteAdminAction extends Action
         if (!$voteId) {
             $this->error('未找到指定投票信息', U('index'));
         }
-        $voteInfo = $this->_voteModel->getVoteById($voteId);
-        $this->assign('voteInfo', $voteInfo);
-        $this->assign('options', array());
-        $this->display('VoteOption');
+        if (strtoupper($_SERVER['REQUEST_METHOD'])=='POST') {
+            foreach ($_POST['option_title'] as $key=>$_title) {
+                if($_title=='' && $_POST['option_desc'][$key]=='') {
+                    continue;
+                }
+                $optionInfo = array('option_title'=>$_title,
+                        'option_desc' => $_POST['option_desc'][$key],
+                        'vote_id'     => $voteId,
+                        );
+                if (!empty($_POST['optionIds'][$key])) {
+                    $optionInfo['option_id'] = $_POST['optionIds'][$key];
+                    $this->_optionModel->save($optionInfo);
+                } else {
+                    $this->_optionModel->add($optionInfo);
+                }
+            }
+            $this->success('操作成功', U('index', array('voteId'=>$voteId)));
+        } else {
+            $voteInfo = $this->_voteModel->getVoteById($voteId);
+            $this->assign('voteInfo', $voteInfo);
+            $this->assign('options', array());
+            $this->display('VoteOption');
+        }
     }
 
     public function updateOptions ()
     {
-
+        $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
+        if (!$voteId) {
+            $this->error('未找到指定投票信息', U('index'));
+        }
+        if (strtoupper($_SERVER['REQUEST_METHOD'])=='POST') {
+            foreach ($_POST['option_title'] as $key=>$_title) {
+                if($_title=='' && $_POST['option_desc'][$key]=='') {
+                    continue;
+                }
+                $optionInfo = array('option_title'=>$_title,
+                        'option_desc' => $_POST['option_desc'][$key],
+                        'vote_id'     => $voteId,
+                        );
+                if (!empty($_POST['optionIds'][$key])) {
+                    $optionInfo['option_id'] = $_POST['optionIds'][$key];
+                    $this->_optionModel->save($optionInfo);
+                } else {
+                    $this->_optionModel->add($optionInfo);
+                }
+            }
+            $this->success('操作成功', U('index', array('voteId'=>$voteId)));
+        } else {
+            $voteInfo = $this->_voteModel->getVoteById($voteId);
+            $options = $this->_optionModel->getOptionsByVoteId($voteId);
+            $this->assign('voteInfo', $voteInfo);
+            $this->assign('options', $options);
+            $this->display('VoteOption');
+        }
     }
 
     public function deleteOptions ()

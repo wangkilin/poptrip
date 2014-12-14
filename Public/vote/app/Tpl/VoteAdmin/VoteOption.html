@@ -3,6 +3,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>投票管理</title>
+<script type="text/javascript" src="__PUBLIC__/../jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/../jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#mainContent').on('click', '.addOptionItem', function () {
+		var $p = $('.optionItem').filter('.fixed').last();
+		$('.optionItem').find('.removeOptionItem').remove();
+		var $newP = $p.clone();
+		$newP.find('input, textarea').val('');
+		$('.optionItem').append($('<i>移除</i>').addClass('removeOptionItem'));
+        $p.removeClass('.fixed').find('.addOptionItem').remove();
+		$('.optionItem').last().after($newP);
+	});
+	
+	$('#mainContent').on('click', '.removeOptionItem', function() {
+		$(this).closest('.optionItem').remove();
+	});
+});
+</script>
 </head>
 <body>
 	<div id="mainContent">
@@ -13,16 +32,34 @@
 			</p>
 
 			<p>投票列表</p>
+			
+            <if condition="count($options) gt 0">
+            <volist name="options" id="_option">
+            <p class="optionItem">
+                <input type="hidden" name="optionIds[]" value="{$_option['option_id']}"/>
+                <i class="itemSequence">1</i>
+                <label for="">标题</label>
+                <input name="option_title[]" type="text"
+                    value="{$_option['option_title']}" />
+                <label for="">内容</label>
+                <textarea name="option_desc[]">{$_option['option_desc']}</textarea>
+                <i class='removeOptionItem'>移除</i>
+            </p>
+            </volist>
+            </if>
 			<p class="optionItem fixed">
-			    <i class="itemSequence">1</i>
-				<label for="option_title">标题</label>
-				<input name="option_title" type="text"
-					value="{$_option['option_title']}" />
-				<label for="option_desc">内容</label>
-				<textarea name="option_desc">{$_option['option_desc']}</textarea>
+			    <input type="hidden" name="optionIds[]" value=""/>
+                <i class="itemSequence">1</i>
+				<label for="">标题</label>
+				<input name="option_title[]" type="text"
+					value="" />
+				<label for="">内容</label>
+				<textarea name="option_desc[]"></textarea>
 				<i class='addOptionItem'>添加</i>
 			</p>
+			<input name="voteId" type="hidden" value="{$voteInfo['vote_id']}"/>
 			<input type="submit" value="保存" />
+			&nbsp;
 			<input type="reset" value="重写" />
 		</form>
 	</div>

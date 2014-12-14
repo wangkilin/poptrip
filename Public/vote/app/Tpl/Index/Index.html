@@ -7,17 +7,38 @@
 <body>
 <div id="mainConent">
   <p id="voteTitle">{$voteInfo['vote_title']}</p>
-  <if condition="$voteInfo['options']['display_title']==1">
-  <ul id="option_list">
-    <li class="option_title">{$optionInfo['option_title']}</li>
-  </ul>
-  <else/>
-  <table class="option_desc">
-    <tr>
-      <td>{$optionInfo['option_desc']}</td>
-    </tr>
-  </table>
-  </if>
+	<if condition="$voteInfo['options']['display_style'] eq 1"> 
+	  <if condition="count($options) gt 0">
+		<ul id="option_list">
+			<volist name="options" id="_option">
+			<li class="option_title">
+			 <a href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">{$_option['option_title']}</a>
+			</li>
+			</volist>
+		</ul>
+	  </if> 
+	<elseif condition="$voteInfo['options']['display_style'] eq 2"/>
+      <if condition="count($options) gt 0">
+        <ul id="option_list">
+            <volist name="options" id="_option">
+            <li class="option_title">{$optionInfo['option_title']}</li>
+            </volist>
+        </ul>
+      </if> 
+	<else />
+      <if condition="count($options) gt 0">
+        <ul id="option_list">
+            <volist name="options" id="_option">
+            <li class="option_title">{$optionInfo['option_title']}</li>
+            </volist>
+        </ul>
+      </if> 
+		<table class="option_desc">
+			<tr>
+				<td>{$optionInfo['option_desc']}</td>
+			</tr>
+		</table>
+	</if>
 </div>
 </body>
 </html>

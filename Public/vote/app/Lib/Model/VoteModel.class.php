@@ -13,6 +13,21 @@ class VoteModel extends Model
         return $this->add($params);
     }
 
+    public function getCurrentVote ()
+    {
+        $sql = 'SELECT * FROM ' .$this->tablePrefix . $this->tableName
+            . ' WHERE start_time <= "' . date('Y-m-d') . '"
+                AND   end_time >= "' . date('Y-m-d') . '"
+                AND is_public = 1
+                ';
+        $result = $this->query($sql);
+        if($result) {
+            $result = $result[0];
+        } else {
+            $result = array();
+        }
+    }
+
     public function getVoteById ($voteId)
     {
         $voteInfo = $this->find($voteId);
