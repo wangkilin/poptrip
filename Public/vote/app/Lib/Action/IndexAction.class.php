@@ -98,6 +98,14 @@ class IndexAction extends Action
             $this->redirect('index');
         }
         $voteSettings = @json_decode($voteInfo['vote_option'], true);
+        $ipModel = D('Ip');
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $ipInfo = $ipModel->getByIpAndVoteId(ip2long($ip_address), $voteId);
+        if(!$voteSettings['is_public']||$voteSettings['']||$voteSettings['']) {
+            $this->redirect('index');
+        }
+        cookie('','');
+        session('','');
 
         $voteResult = $this->_optionModel->vote($optionId);
         if ($voteResult) {
