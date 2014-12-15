@@ -3,9 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>投票</title>
+<include file="VoteAdmin:common"/>
 </head>
 <body>
-<div id="mainConent">
+<div id="mainConent" class="wrapper">
   <p id="voteTitle">{$voteInfo['vote_title']}</p>
 	<if condition="$voteInfo['options']['display_style'] eq 1"> 
 	  <if condition="count($options) gt 0">

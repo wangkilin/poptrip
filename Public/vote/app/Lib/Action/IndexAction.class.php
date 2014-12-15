@@ -70,6 +70,7 @@ class IndexAction extends Action
             $voteInfo = $this->_voteModel->getVoteById($voteId);
         }
         if ($voteInfo) {
+            $voteInfo['options'] = json_decode($voteInfo['options'], true);
             $options = $this->_optionModel->getOptionsByVoteId($voteInfo['vote_id']);
         } else {
             $options = array();
@@ -81,31 +82,50 @@ class IndexAction extends Action
 
     public function vote ()
     {
+        // 投票需要制定两个ID项
         $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
         $optionId = isset($_REQUEST['optionId']) ? intval($_REQUEST['optionId']) : 0;
-        if (!$voteId || !$optionId) {
+        if (!$voteId || !$optionId) { // 没有指定ID项
             $this->redirect('index');
         }
         $voteInfo = $this->_voteModel->getVoteById($voteId);
-        if (! $voteInfo) {
+        if (! $voteInfo) { // 投票ID无效
             $this->redirect('index');
         }
         $optionInfo = $this->_optionModel->getOptionById($optionId);
-        if (! $optionInfo) {
+        if (! $optionInfo || $optionInfo['vote_id']!=$voteId) { // 投票选项无效
             $this->redirect('index');
         }
-        if ($optionInfo['vote_id']!=$voteId) {
+        if(!$voteInfo['is_public']) { // 非公开投票
             $this->redirect('index');
         }
         $voteSettings = @json_decode($voteInfo['vote_option'], true);
-        $ipModel = D('Ip');
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $ipInfo = $ipModel->getByIpAndVoteId(ip2long($ip_address), $voteId);
-        if(!$voteSettings['is_public']||$voteSettings['']||$voteSettings['']) {
+        $startTime = strtotime($voteSettings['start_time']);
+        $endTime = strtotime($voteSettings['end_time']);
+        if ($startTime && $startTime>time()) { // 投票尚未开始
             $this->redirect('index');
         }
-        cookie('','');
-        session('','');
+        if ($endTime && $endTime<time()) { // 投票已经结束
+            $this->redirect('index');
+        }
+        if ('Yes'!=$voteSettings['count_duplicate_ip']) { // 不允许IP重复
+            $ipModel = D('Ip');
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $ipInfo = $ipModel->getByIpAndVoteId(ip2long($ip_address), $voteId);
+            if ($ipInfo) {
+                $this->redirect('index');
+            }
+        }
+        if ('Yes'!=$voteSettings['count_duplicate_session']) { // 不允许反复投票
+            $sessionKey = 'Session_Vote_Key';
+            $voteCookie = cookie ( $sessionKey );
+            $voteSession = session ( $sessionKey );
+            if ($voteCookie || $voteSession) {
+                $this->redirect('index');
+            }
+            cookie($sessionKey, $sessionKey);
+            session($sessionKey, $sessionKey);
+        }
 
         $voteResult = $this->_optionModel->vote($optionId);
         if ($voteResult) {

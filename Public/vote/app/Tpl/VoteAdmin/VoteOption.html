@@ -3,8 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>投票管理</title>
-<script type="text/javascript" src="__PUBLIC__/../jquery.js"></script>
-<script type="text/javascript" src="__PUBLIC__/../jquery-ui.min.js"></script>
+<include file="common"/>
 <script type="text/javascript">
 $(function() {
 	$('#mainContent').on('click', '.addOptionItem', function () {
@@ -24,20 +23,20 @@ $(function() {
 </script>
 </head>
 <body>
-	<div id="mainContent">
-		<form action="" method="post">
+	<div id="mainContent" class="wrapper">
+		<form id="option_form" action="" method="post">
 			<p id="voteInfo">
 				<span>投票标题</span>
 				<span id="voteTitle">{:$voteInfo['vote_title']}</span>
 			</p>
 
-			<p>投票列表</p>
+			<p>选项列表</p>
 			
             <if condition="count($options) gt 0">
             <volist name="options" id="_option">
             <p class="optionItem">
                 <input type="hidden" name="optionIds[]" value="{$_option['option_id']}"/>
-                <i class="itemSequence">1</i>
+                <i class="itemSequence">{$i}</i>
                 <label for="">标题</label>
                 <input name="option_title[]" type="text"
                     value="{$_option['option_title']}" />
@@ -57,6 +56,7 @@ $(function() {
 				<textarea name="option_desc[]"></textarea>
 				<i class='addOptionItem'>添加</i>
 			</p>
+			
 			<input name="voteId" type="hidden" value="{$voteInfo['vote_id']}"/>
 			<input type="submit" value="保存" />
 			&nbsp;

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* 投票管理表单 */
+#vote_form
+{
+	 line-height: 30px;
+}
+#vote_form p
+{
+clear:both;
+font-weight:bold;
+}
+#vote_form span
+{
+	float:left;
+	clear: both;
+}
+#vote_form label
+{
+float:left;
+text-align:right;
+}
+#vote_form input, #vote_form textarea
+{
+float:left;
+}
+
+/* 投票信息显示 */
+#voteInfo
+{
+	
+}
+#voteInfo span
+{
+    min-width : 100px;
+}
+#optionInfo
+{
+	
+}
+#optionInfo span
+{
+    min-width : 100px;
+}

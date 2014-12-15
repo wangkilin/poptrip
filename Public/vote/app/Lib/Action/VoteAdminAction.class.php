@@ -46,6 +46,8 @@ class VoteAdminAction extends Action
             $voteInfo['end_time'] = isset($_POST['end_time']) ? $_POST['end_time'] : '';
             $voteInfo['options'] = array();
             $voteInfo['options']['display_style'] = isset($_POST['display_style']) ? $_POST['display_style'] : '';
+            $voteInfo['options']['count_duplicate_ip'] = isset($_POST['count_duplicate_ip']) ? $_POST['count_duplicate_ip'] : 'No';
+            $voteInfo['options']['count_duplicate_session'] = isset($_POST['count_duplicate_session']) ? $_POST['count_duplicate_session'] : 'No';
             $voteInfo['options'] = json_encode($voteInfo['options']);
             $result = $this->_voteModel->addVote($voteInfo);
             $voteId = $this->_voteModel->getLastInsID();
@@ -76,6 +78,8 @@ class VoteAdminAction extends Action
             $voteInfo['end_time'] = isset($_POST['end_time']) ? $_POST['end_time'] : '';
             $voteInfo['options'] = array();
             $voteInfo['options']['display_style'] = isset($_POST['display_style']) ? $_POST['display_style'] : '';
+            $voteInfo['options']['count_duplicate_ip'] = isset($_POST['count_duplicate_ip']) ? $_POST['count_duplicate_ip'] : 'No';
+            $voteInfo['options']['count_duplicate_session'] = isset($_POST['count_duplicate_session']) ? $_POST['count_duplicate_session'] : 'No';
             $voteInfo['options'] = json_encode($voteInfo['options']);
             $voteInfo['vote_id'] = $voteId;
             $result = $this->_voteModel->save($voteInfo);
@@ -86,6 +90,13 @@ class VoteAdminAction extends Action
             }
         } else {
             $voteInfo = $this->_voteModel->getVoteById($voteId);
+
+            if ($voteInfo) {
+                $voteInfo['options'] = json_decode($voteInfo['options'], true);
+                $options = $this->_optionModel->getOptionsByVoteId ( $voteInfo ['vote_id'] );
+            } else {
+                $options = array ();
+            }
         }
 
         $this->assign('voteInfo', $voteInfo);
