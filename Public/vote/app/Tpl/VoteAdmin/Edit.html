@@ -45,9 +45,11 @@
   <input name="count_duplicate_session" type="radio" value="Yes" id="count_duplicate_session_yes" {:($voteInfo['options']['count_duplicate_session']=='Yes'?'checked="checked"':'')}/>
   <label for="count_duplicate_session_yes">是</label>
   <p>&nbsp;</p>
-  <input type="submit" value="保存"/>
+  <input class="button" type="submit" value="保 存"/>
   &nbsp;
-  <input type="reset" value="重写"/>
+  <input class="button" type="reset" value="重 写"/>
+  &nbsp;
+  <a class="return" href="{:U('index')}"> 返 回 </a>
   </form>
 </div>
 </body>

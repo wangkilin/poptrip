@@ -8,22 +8,22 @@
 <body>
 <div id="mainContent" class="wrapper">
   
-  <div id="menuAdd"><a href="{:U('addVote')}">添加</a></div>
+  <div id="menuAdd"><a href="{:U('addVote')}"> 添加投票 </a></div>
   <div id="voteList">
     <table>
       <tr>
         <th>&nbsp;</th>
-        <th>标题</th>
-        <th>公开</th>
-        <th>开始</th>
-        <th>结束</th>
-        <th>属性</th>
-        <th>操作</th>
+        <th class="title">标题</th>
+        <th class="is_public">公开</th>
+        <th class="start_time">开始</th>
+        <th class="end_time">结束</th>
+        <th class="options">属性</th>
+        <th class="operation">操作</th>
       </tr>
       <if condition="count($voteList) gt 0">
       <volist name='voteList' id='_vote'>
-      <tr class="{:($mod>0?'':'odd')}">
-        <td>{$i} {$_vote['vote_id']}</td>
+      <tr class="{:($mod>0?'':'oddItem')}">
+        <td>{$i}</td>
         <td>{$_vote['vote_title']}</td>
         <td>{$_vote['is_public']}</td>
         <td>{$_vote['start_time']}</td>
@@ -39,9 +39,9 @@
               >浏览</a> 
         </td>
       </tr>
-      <tr class="{:($mod>0?'':'odd')}">
+      <tr class="{:($mod>0?'':'oddItem')}">
         <td colspan="7">
-        {$_vote['vote_desc']}
+        {$_vote['vote_desc']} &nbsp;
         </td>
       </tr>
       </volist>

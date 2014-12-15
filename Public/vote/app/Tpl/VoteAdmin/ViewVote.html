@@ -9,27 +9,27 @@
 <div id="mainContent" class="wrapper">
 		<div id="voteInfo">
 			<p>
-				<span>投票标题</span>
+				<span class="label">投票标题</span>
 				<span>{:$voteInfo['vote_title']}</span>
 			</p>
 			<p>
-				<span>描述</span>
+				<span class="label">描述</span>
 				<span>{:$voteInfo['vote_desc']}</span>
 			</p>
 			<p>
-				<span>是否公开</span>
+				<span class="label">是否公开</span>
 				<span>{:($voteInfo['is_public']==1?'是':'否')}</span>
 			</p>
 			<p>
-				<span>开始日期</span>
+				<span class="label">开始日期</span>
 				<span>{:$voteInfo['start_time']}</span>
 			</p>
 			<p>
-				<span>结束日期</span>
+				<span class="label">结束日期</span>
 				<span>{:$voteInfo['end_time']}</span>
 			</p>
 			<p>
-				<span>选项显示</span>
+				<span class="label">选项显示</span>
 				<span> {:($voteInfo['display_style']==1?'只显示标题':'')}
 					{:($voteInfo['display_style']==2?'只显示内容':'')}
 					{:($voteInfo['display_style']==3?'显示标题和内容':'')} </span>
@@ -40,24 +40,26 @@
 		  <if condition="count($voteOptions) gt 0">
 		  <p>选项列表  &nbsp; <a href="{:U('updateOptions', array('voteId'=>$voteInfo['vote_id']))}">修改选项</a></p>
           <p class="">
-            <span class="">&nbsp;</span>
-            <span class="option_title">标题</span>
-            <span class="">描述</span>
-            <span class="">点击次数</span>
+            <span class="option_id label">&nbsp;</span>
+            <span class="option_title label">标题</span>
+            <span class="option_desc label">描述</span>
+            <span class="option_click label">点击次数</span>
           </p>
 		  <volist name="voteOptions" id="_option">
-		  <p class="option_item {:($mod>0?'':'odd')}">
-		    <span class="">{$i}</span>
+		  <p class="option_item {:($mod>0?'':'oddItem')}">
+		    <span class="option_id">{$i}</span>
 		    <span class="option_title">{$_option['option_title']}</span>
-            <span class="">{$_option['option_desc']}</span>
-            <span class="">{$_option['click_num']}</span>
+            <span class="option_desc">{$_option['option_desc']}</span>
+            <span class="option_click">{$_option['click_num']}</span>
 		  </p>
 		  </volist>
 		  <else/>
 		  <p class="option_item"><a href="{:U('addOptions',array('voteId'=>$voteInfo['vote_id']))}">添加选项</a></p>
 		  </if>
 		</div>
-
+        
+  &nbsp;
+  <a class="return" href="{:U('index')}"> 返 回 </a>
 	</div>
 </body>
 </html>

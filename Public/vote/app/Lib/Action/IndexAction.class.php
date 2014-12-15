@@ -99,7 +99,7 @@ class IndexAction extends Action
         if(!$voteInfo['is_public']) { // 非公开投票
             $this->redirect('index');
         }
-        $voteSettings = @json_decode($voteInfo['vote_option'], true);
+        $voteSettings = @json_decode($voteInfo['options'], true);
         $startTime = strtotime($voteSettings['start_time']);
         $endTime = strtotime($voteSettings['end_time']);
         if ($startTime && $startTime>time()) { // 投票尚未开始

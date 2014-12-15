@@ -1,8 +1,50 @@
 @charset "utf-8";
+/* 表单管理首页 */
+#menuAdd, .return, .button
+{
+border: 1px solid #f1f1f1;
+    border-radius: 3px;
+    display: block;
+    font: 12px/28px "宋体";
+    margin: 0 0 8px;
+    text-align: center; 
+    width: 100px;
+      margin: 3px auto;
+    font-weight:bold;
+}
+#voteList
+{
+font-size:12px;
+}
+#voteList .title{
+width:180px;	
+}
+#voteList .is_public{
+width:40px;   
+}
+#voteList .start_time{
+width:160px; 
+}
+#voteList .end_time{
+width:160px;    
+}
+#voteList .options{
+width:260px;   
+}
+#voteList .operation{
+width:200px;   
+}
 /* 投票管理表单 */
+#mainContent
+{
+font-family: 微软雅黑;
+font-size: 14px;
+line-height:20px;
+}
 #vote_form
 {
-	 line-height: 30px;
+line-height: 30px;
+font-size: 14px;
 }
 #vote_form p
 {
@@ -22,6 +64,11 @@ text-align:right;
 #vote_form input, #vote_form textarea
 {
 float:left;
+height: 28px;
+}
+input.button
+{
+margin: 3px 10px;
 }
 
 /* 投票信息显示 */
@@ -33,11 +80,98 @@ float:left;
 {
     min-width : 100px;
 }
+
+#voteInfo span.label{
+font-weight: bold;
+}
 #optionInfo
 {
-	
+clear: both;
+    float: left;
+    width: 100%;	
+}
+#optionInfo p
+{
+    float:left;
+    clear:both;
+    line-height:30px;
+    height:30px;
 }
 #optionInfo span
 {
+	float:left;
     min-width : 100px;
+}
+#optionInfo span.label
+{
+    min-width : 100px;
+font-weight: bold;
+}
+
+/* 前台投票 */
+#voteTitle
+{
+font-family: 微软雅黑;
+font-size: 14px;
+font-weight: bold;
+}
+.option_item
+{
+background-color: #f8f8f8;	
+}
+.oddItem
+{
+background-color: #e71714;	
+}
+.display_style_list
+{
+	
+}
+.voteButton
+{
+border: 1px solid #f1f1f1;
+    border-radius: 3px;
+    display: block;
+    font: 12px/28px "宋体";
+    margin: 0 0 8px;
+    text-align: center;	
+    width: 50px;
+      margin: 3px auto;
+}
+.display_style_desc .option_item
+{
+float:left;
+width: 120px;
+margin: 10px;
+}
+.display_style_list .option_title
+{
+float:left;
+width:120px;
+margin: auto 10px;
+ line-height: 30px;
+}
+.display_style_list .voteButton
+{
+	float:left;
+}
+.display_style_list .option_item
+{
+float:left;
+margin: 1px;
+padding: 0 10px;
+clear:both;
+}
+
+.display_style_both .option_item
+{
+float:left;
+width: 120px;
+margin: 10px;
+border: 1px solid #999999;
+    border-radius: 3px;
+}
+.option_item_title
+{
+text-align:center;
 }

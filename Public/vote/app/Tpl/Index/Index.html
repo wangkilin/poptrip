@@ -10,36 +10,41 @@
   <p id="voteTitle">{$voteInfo['vote_title']}</p>
 	<if condition="$voteInfo['options']['display_style'] eq 1"> 
 	  <if condition="count($options) gt 0">
-		<ul id="option_list">
+		<ul class="option_list display_style_list">
 			<volist name="options" id="_option">
-			<li class="option_title">
-			 <a href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">{$_option['option_title']}</a>
+			<li class="option_item  {:($mod%2==0?'oddItem':'')}">
+			 <o class="option_title">{$_option['option_title']}</o>
+			 <a class="voteButton" href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">投 票</a>
 			</li>
 			</volist>
 		</ul>
 	  </if> 
 	<elseif condition="$voteInfo['options']['display_style'] eq 2"/>
       <if condition="count($options) gt 0">
-        <div class="option_list">
+        <div class="option_list display_style_desc">
             <volist name="options" id="_option">
-            <div class="option_item">
+            <div class="option_item {:($mod%2==0?'oddItem':'')}" >
+            <div  class="option_item_desc">
                 {$_option['option_desc']}
             </div>
-            <a href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">{$_option['option_title']}</a>
+            <a class="voteButton" href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">投 票</a>
+            </div>
             </volist>
         </div>
       </if> 
 	<else />
       <if condition="count($options) gt 0">
-        <div class="option_list">
+        <div class="option_list display_style_both">
             <volist name="options" id="_option">
+            <div class="option_item {:($mod%2==0?'oddItem':'')}">
             <div class="option_item_title">
                 {$_option['option_title']}
             </div>
             <div class="option_item_desc">
                 {$_option['option_desc']}
             </div>
-            <a href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">{$_option['option_title']}</a>
+            <a class="voteButton" href="{:U('vote', array('voteId'=>$voteInfo['vote_id'], 'optionId'=>$_option['option_id']))}">投 票</a>
+            </div>
             </volist>
         </div>
       </if> 
