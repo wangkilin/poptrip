@@ -60,9 +60,10 @@ class OptionModel extends Model
 
     }
 
-    public function deleteOptions ($optionId)
+    public function deleteOption ($voteId, $optionId)
     {
 
+        return $this->delete(array('where'=> 'vote_id = '.$voteId . ' AND option_id = '.$optionId));
     }
 
     public function deleteOptionsByVoteId ($voteId)

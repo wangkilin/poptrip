@@ -5,19 +5,23 @@
 border: 1px solid #f1f1f1;
     border-radius: 3px;
     display: block;
-    font: 12px/28px "宋体";
-    margin: 0 0 8px;
-    text-align: center; 
+    float: left;
+    font: bold 12px/28px "宋体";
+    margin: 3px auto 3px 20px;
+    text-align: center;
     width: 100px;
-      margin: 3px auto;
-    font-weight:bold;
+}
+#menuAdd
+{
+float: none;	
 }
 #voteList
 {
 font-size:12px;
 }
 #voteList .title{
-width:180px;	
+width:400px;
+	
 }
 #voteList .is_public{
 width:40px;   
@@ -34,17 +38,52 @@ width:260px;
 #voteList .operation{
 width:200px;   
 }
+#voteListTable .title
+{
+text-align:center;
+overflow:hidden;
+padding-left:5px;
+}
+#voteListTable .is_public
+{
+text-align:center;
+}
+#voteListTable .start_time
+{
+text-align:center;
+}
+#voteListTable .end_time
+{
+text-align:center;
+}
+#voteListTable .options
+{
+}
+#voteListTable .operation
+{
+text-align:center;
+}
+#voteListTable .option_item
+{
+height:25px;
+}
+
+#voteListTable td
+{
+height:25px;
+border-bottom: 1px solid #ddd;
+}
+
 /* 投票管理表单 */
 #mainContent
 {
-font-family: 微软雅黑;
-font-size: 14px;
+font-size: 12px;
 line-height:20px;
 }
 #vote_form
 {
 line-height: 30px;
-font-size: 14px;
+font-size: 12px;
 }
 #vote_form p
 {
@@ -53,13 +92,26 @@ font-weight:bold;
 }
 #vote_form span
 {
-	float:left;
-	clear: both;
+clear: both;
+    float: left;
+    height: 1px;
+    width: 100%;
+}
+#vote_form span.label
+{
+    height: 20px;
+}
+#vote_form span.clearLeft
+{
+clear:left;
+width:100px;
+margin-left:10px;
 }
 #vote_form label
 {
-float:left;
-text-align:right;
+float: left;
+    margin-left: 10px;
+    min-width: 80px;
 }
 #vote_form input, #vote_form textarea
 {
@@ -71,34 +123,45 @@ input.button
 margin: 3px 10px;
 }
 
-/* 投票信息显示 */
+/* 查看投票信息 */
 #voteInfo
 {
 	
 }
+#voteInfo p
+{
+float:left;
+width:100%;
+border-bottom: 1px dashed #ddd;
+min-height:30px;
+line-height:30px;
+}
 #voteInfo span
 {
-    min-width : 100px;
+ min-width:100px;
+float:left;
 }
 
-#voteInfo span.label{
+#voteInfo span.label,#optionInfo p.label{
 font-weight: bold;
+width:100px;
 }
 #optionInfo
 {
 clear: both;
     float: left;
-    width: 100%;	
+    width: 100%;
+    margin-top: 20px;	
 }
 #optionInfo p
 {
-    float:left;
     clear:both;
     line-height:30px;
     height:30px;
 }
 #optionInfo span
 {
+	padding:0 5px;
 	float:left;
     min-width : 100px;
 }
@@ -107,17 +170,59 @@ clear: both;
     min-width : 100px;
 font-weight: bold;
 }
+#optionInfo .option_title
+{
+float:left;
+width : 300px;
+}
 
+/* 选项管理 */
+#option_form p *
+{
+float:left;
+}
+#option_form p input, #option_form p textarea
+{
+height:30px;
+width: 200px;
+margin-right: 50px;
+}
+#option_form label, #option_form .label
+{
+font-weight:bold;
+min-width:50px;
+}
+#option_form .removeOptionItem, #option_form .addOptionItem
+{
+margin: 0 30px;
+}
+#option_form p
+{
+ margin: 10px 0;
+float:left;
+width:100%;
+border-bottom: 1px dashed #ddd;
+}
+#option_form #voteInfo
+{
+font-size: 14px;
+font-weight: bold;
+margin: 10px 0;
+}
+#option_form .itemSequence
+{
+margin: 0 10px;	
+}
 /* 前台投票 */
 #voteTitle
 {
-font-family: 微软雅黑;
 font-size: 14px;
 font-weight: bold;
 }
 .option_item
 {
 background-color: #f8f8f8;	
+border-bottom: 1px dashed #ddd;
 }
 .oddItem
 {

@@ -10,26 +10,26 @@
   
   <div id="menuAdd"><a href="{:U('addVote')}"> 添加投票 </a></div>
   <div id="voteList">
-    <table>
+    <table id="voteListTable" cellspacing="0" cellpadding="0" border="0">
       <tr>
         <th>&nbsp;</th>
         <th class="title">标题</th>
         <th class="is_public">公开</th>
         <th class="start_time">开始</th>
         <th class="end_time">结束</th>
-        <th class="options">属性</th>
+        <!-- <th class="options">属性</th> -->
         <th class="operation">操作</th>
       </tr>
       <if condition="count($voteList) gt 0">
       <volist name='voteList' id='_vote'>
-      <tr class="{:($mod>0?'':'oddItem')}">
+      <tr class="option_item {:($mod>0?'':'oddItem')}">
         <td>{$i}</td>
-        <td>{$_vote['vote_title']}</td>
-        <td>{$_vote['is_public']}</td>
-        <td>{$_vote['start_time']}</td>
-        <td>{$_vote['end_time']}</td>
-        <td>{:(json_decode($_vote['vote_title'], true))}</td>
-        <td><a href="{:U('deleteVote', array('voteId'=>$_vote['vote_id']))}" 
+        <td class="title">{$_vote['vote_title']}</td>
+        <td class="is_public">{:($_vote['is_public']=='1'?"是":"否")}</td>
+        <td class="start_time">{$_vote['start_time']}</td>
+        <td class="end_time">{$_vote['end_time']}</td>
+        <!-- <td class="options">{:(json_decode($_vote['vote_title'], true))}</td> -->
+        <td class="operation"><a href="{:U('deleteVote', array('voteId'=>$_vote['vote_id']))}" 
               onclick="return confirm('确认删除么？');">删除</a> 
             <a href="{:U('updateVote', array('voteId'=>$_vote['vote_id']))}" 
               >修改</a> 
@@ -39,11 +39,13 @@
               >浏览</a> 
         </td>
       </tr>
+      <!-- 
       <tr class="{:($mod>0?'':'oddItem')}">
         <td colspan="7">
         {$_vote['vote_desc']} &nbsp;
         </td>
       </tr>
+      -->
       </volist>
       <else/>
       <tr>

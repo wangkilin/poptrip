@@ -17,7 +17,24 @@ $(function() {
 	});
 	
 	$('#mainContent').on('click', '.removeOptionItem', function() {
-		$(this).closest('.optionItem').remove();
+		var $p = $(this).closest('.optionItem');
+		var voteId = $p.attr('vote_id');
+		var optionId = $p.attr('option_id');
+		var params = {voteId:voteId, optionId:optionId};
+		if (! voteId || !optionId) {
+			$p.remove();
+			return;
+		}
+		if (! confirm('确认删除么？ 不可恢复。')) {
+			return;
+		}
+		$.post("{:U('deleteOptions')}", params, function(response) {
+			if ($(response).find('.ok').length) {
+				$p.remove();
+			} else {
+				alert('删除失败！');
+			}
+		});
 	});
 });
 </script>
@@ -30,11 +47,11 @@ $(function() {
 				<span id="voteTitle">{:$voteInfo['vote_title']}</span>
 			</p>
 
-			<p>选项列表</p>
+			<p class="label">选项列表</p>
 			
             <if condition="count($options) gt 0">
             <volist name="options" id="_option">
-            <p class="optionItem">
+            <p class="optionItem" vote_id="{$voteInfo['vote_id']}" option_id="{$_option['option_id']}">
                 <input type="hidden" name="optionIds[]" value="{$_option['option_id']}"/>
                 <i class="itemSequence">{$i}</i>
                 <label for="">标题</label>
@@ -48,7 +65,7 @@ $(function() {
             </if>
 			<p class="optionItem fixed">
 			    <input type="hidden" name="optionIds[]" value=""/>
-                <i class="itemSequence">1</i>
+                <i class="itemSequence">&nbsp;</i>
 				<label for="">标题</label>
 				<input name="option_title[]" type="text"
 					value="" />
@@ -58,9 +75,11 @@ $(function() {
 			</p>
 			
 			<input name="voteId" type="hidden" value="{$voteInfo['vote_id']}"/>
-			<input type="submit" value="保存" />
+			<input class="button" type="submit" value="保存" />
 			&nbsp;
-			<input type="reset" value="重写" />
+			<input class="button" type="reset" value="重写" />
+  &nbsp;
+  <a class="return" href="{:U('index')}"> 返 回 </a>
 		</form>
 	</div>
 </body>

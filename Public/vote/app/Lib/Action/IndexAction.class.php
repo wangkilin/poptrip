@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `vote_ip` (
   `vote_id` int(4) NOT NULL,
   `click_time` datetime NOT NULL,
   PRIMARY KEY (`ip_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `vote_list` (
   `end_time` datetime NOT NULL,
   `options` text NOT NULL COMMENT '列表样式 html ? ul list?',
   PRIMARY KEY (`vote_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `vote_option` (
   `vote_id` int(4) NOT NULL,
   `order_id` mediumint(4) NOT NULL COMMENT '组内序号',
   PRIMARY KEY (`option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
  *
  */
 class IndexAction extends Action
