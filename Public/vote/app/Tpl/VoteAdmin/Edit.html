@@ -14,7 +14,7 @@
   <span>&nbsp;</span>
   <label for="vote_desc">描述</label>
   <textarea name="vote_desc" id="vote_desc">{:$voteInfo['vote_desc']}</textarea>
-  <span>是否公开</span>
+  <span class="label clearLeft">是否公开</span>
   <input name="is_public" type="radio" value="1" id="is_public_yes" {:($voteInfo['is_public']==1?'checked="checked"':'')}/>
   <label for="is_public_yes">是</label>
   <input name="is_public" type="radio" value="0" id="is_public_no" {:($voteInfo['is_public']==0?'checked="checked"':'')}/>
@@ -34,12 +34,12 @@
   <label for="display_style_all">显示标题和内容</label>
 
   <p>计票设置</p>
-  <span>允许IP重复</span>
+  <span class="label clearLeft">允许IP重复</span>
   <input name="count_duplicate_ip" type="radio" value="No" id="count_duplicate_ip_no" {:($voteInfo['options']['count_duplicate_ip']!='Yes'?'checked="checked"':'')}/>
   <label for="count_duplicate_ip_no">否</label>
   <input name="count_duplicate_ip" type="radio" value="Yes" id="count_duplicate_ip_yes" {:($voteInfo['options']['count_duplicate_ip']=='Yes'?'checked="checked"':'')}/>
   <label for="count_duplicate_ip_yes">是</label>
-  <span>允许重复投票</span>
+  <span class="label clearLeft">允许重复投票</span>
   <input name="count_duplicate_session" type="radio" value="No" id="count_duplicate_session_no" {:($voteInfo['options']['count_duplicate_session']!='Yes'?'checked="checked"':'')}/>
   <label for="count_duplicate_session_no">否</label>
   <input name="count_duplicate_session" type="radio" value="Yes" id="count_duplicate_session_yes" {:($voteInfo['options']['count_duplicate_session']=='Yes'?'checked="checked"':'')}/>
@@ -48,8 +48,10 @@
   <input class="button" type="submit" value="保 存"/>
   &nbsp;
   <input class="button" type="reset" value="重 写"/>
+    &nbsp;
+  <a class="return" href="{:U('updateOptions',array('voteId'=>$voteInfo['vote_id']))}"> 修改选项 </a>
   &nbsp;
-  <a class="return" href="{:U('index')}"> 返 回 </a>
+  <a class="return" href="{:U('index')}"> 返 回</a>
   </form>
 </div>
 </body>

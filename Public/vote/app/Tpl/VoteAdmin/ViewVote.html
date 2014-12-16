@@ -29,17 +29,24 @@
 				<span>{:$voteInfo['end_time']}</span>
 			</p>
 			<p>
-				<span class="label">选项显示</span>
-				<span> {:($voteInfo['display_style']==1?'只显示标题':'')}
-					{:($voteInfo['display_style']==2?'只显示内容':'')}
-					{:($voteInfo['display_style']==3?'显示标题和内容':'')} </span>
+				<span class="label">选项设置</span>
+				<span>{:($voteInfo['options']['display_style']==1?'只显示标题':'')}
+					{:($voteInfo['options']['display_style']==2?'只显示内容':'')}
+					{:($voteInfo['options']['display_style']==3?'显示标题和内容':'')} </span>
 			</p>
+            <p>
+                <span class="label">计票设置</span>
+                <span>允许IP重复：{:($voteInfo['options']['count_duplicate_ip']=='Yes'?'是':'否')}
+                <br/>
+                    允许重复投票：{:($voteInfo['options']['count_duplicate_session']=='Yes'?'是':'否')}
+</span>
+            </p>
 		</div>
 		
 		<div id="optionInfo">
 		  <if condition="count($voteOptions) gt 0">
-		  <p>选项列表  &nbsp; <a href="{:U('updateOptions', array('voteId'=>$voteInfo['vote_id']))}">修改选项</a></p>
-          <p class="">
+		  <p class="label">选项列表  </p>
+          <p class="option_item">
             <span class="option_id label">&nbsp;</span>
             <span class="option_title label">标题</span>
             <span class="option_desc label">描述</span>
@@ -49,15 +56,15 @@
 		  <p class="option_item {:($mod>0?'':'oddItem')}">
 		    <span class="option_id">{$i}</span>
 		    <span class="option_title">{$_option['option_title']}</span>
-            <span class="option_desc">{$_option['option_desc']}</span>
-            <span class="option_click">{$_option['click_num']}</span>
+            <span class="option_desc">{:($_option['option_desc']===''?'&nbsp;':$_option['option_desc'])}</span>
+            <span class="option_click">{:intval($_option['click_num'])}</span>
 		  </p>
 		  </volist>
 		  <else/>
 		  <p class="option_item"><a href="{:U('addOptions',array('voteId'=>$voteInfo['vote_id']))}">添加选项</a></p>
 		  </if>
 		</div>
-        
+  &nbsp; <a class="button" href="{:U('updateOptions', array('voteId'=>$voteInfo['vote_id']))}">修改选项</a>      
   &nbsp;
   <a class="return" href="{:U('index')}"> 返 回 </a>
 	</div>

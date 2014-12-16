@@ -17,6 +17,7 @@ class VoteAdminAction extends Action
         if ($voteId) {// 查看一个投票数据
             $voteInfo = $this->_voteModel->getVoteById($voteId);
             if ($voteInfo) {
+                $voteInfo['options'] = json_decode($voteInfo['options'], true);
                 $voteOptions = $this->_optionModel->getOptionsByVoteId($voteId);
                 $this->assign('voteInfo', $voteInfo);
                 $this->assign('voteOptions', $voteOptions);
@@ -53,8 +54,10 @@ class VoteAdminAction extends Action
             $voteId = $this->_voteModel->getLastInsID();
             if ($result) {
                 $this->success('添加成功', U('addOptions', array('voteId'=>$voteId)));
+                return;
             } else {
                 $this->error('添加失败');
+                return;
             }
         }
         $this->assign('action', 'add');
@@ -88,6 +91,7 @@ class VoteAdminAction extends Action
             } else {
                 $this->error('修改失败');
             }
+            return;
         } else {
             $voteInfo = $this->_voteModel->getVoteById($voteId);
 
@@ -190,6 +194,14 @@ class VoteAdminAction extends Action
 
     public function deleteOptions ()
     {
+        $voteId = isset($_REQUEST['voteId']) ? intval($_REQUEST['voteId']) : 0;
+        $optionId = isset($_REQUEST['optionId']) ? intval($_REQUEST['optionId']) : 0;
 
+        $result = $this->_optionModel->deleteOption ($voteId, $optionId);
+        if ($result) {
+            echo '<result><i class="ok">OK</i></result>';
+        } else {
+            echo '<result><i class="fail">Fail</i></result>';
+        }
     }
 }
