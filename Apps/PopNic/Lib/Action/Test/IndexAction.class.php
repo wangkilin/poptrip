@@ -50,6 +50,10 @@ class IndexAction extends Action
     {
     }
 
+    public function Playlist ()
+    {$this->display();
+    }
+
     /**
      * 导入字幕到数据库
      */
