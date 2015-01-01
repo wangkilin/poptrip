@@ -12,7 +12,7 @@ return array(
         'TMPL_VAR_IDENTIFY' => '', // 'array' or 'obj'
         'TMPL_FILE_DEPR' => '/' , // the separator used in template file between Module name and Action name
         'TMPL_TEMPLATE_SUFFIX' => '.php',
-        'TPML_PARSE_STRING' => array(
+        'TMPL_PARSE_STRING' => array(
                 '__PUBLIC__' => __ROOT__ ,
         ),
         'URL_HTML_SUFFIX' => '.html',
