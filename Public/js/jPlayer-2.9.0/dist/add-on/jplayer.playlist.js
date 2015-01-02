@@ -389,9 +389,15 @@
 							}
 
 							if(self.original.length) {
-								if(index === self.current) {
+								if(index === self.current) {// 删除正在播放的
 									self.current = (index < self.original.length) ? self.current : self.original.length - 1; // To cope when last element being selected when it was removed
 									self.select(self.current);
+									// 如果设置了自动播放， 自动播放下一个（如果有下一个)
+									if (self.option('autoPlay')===true
+									 && ((index===0 && self.original.length>0)
+									   ||(self.current!==0)) ) {
+										self.play(self.current);
+									}
 								} else if(index < self.current) {
 									self.current--;
 								}
@@ -421,6 +427,10 @@
 		},
 		play: function(index) {
 			index = (index < 0) ? this.original.length + index : index; // Negative index relates to end of array.
+			// 是否有播放绑定时间
+			if (typeof this.option('playEventTrigger') === 'function') {
+				this.option('playEventTrigger')(this, index);
+			}
 			if(0 <= index && index < this.playlist.length) {
 				if(this.playlist.length) {
 					this.select(index);

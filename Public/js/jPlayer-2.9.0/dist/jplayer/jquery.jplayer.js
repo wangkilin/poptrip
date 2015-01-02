@@ -1850,7 +1850,6 @@
 			}
 		},
 		_updateInterface: function() {
-			window.console && console.debug(Math.random());
 			if(this.css.jq.seekBar.length) {
 				this.css.jq.seekBar.width(this.status.seekPercent+"%");
 			}
@@ -1873,6 +1872,9 @@
 			var durationText = '',
 				duration = this.status.duration,
 				remaining = this.status.remaining;
+			if (typeof this.option('playtimeChangeTrigger') === 'function') {
+				this.option('playtimeChangeTrigger') (duration, remaining);
+			}
 			if(this.css.jq.duration.length) {
 				if(typeof this.status.media.duration === 'string') {
 					durationText = this.status.media.duration;

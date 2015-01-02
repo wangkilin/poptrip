@@ -50,8 +50,26 @@ class IndexAction extends Action
     {
     }
 
+    /**
+     * 播放列表
+     */
     public function Playlist ()
-    {$this->display();
+    {
+        $this->display();
+    }
+
+    /**
+     * 载入LrcById
+     */
+    public function LoadLrcById ()
+    {
+        ob_clean();
+        $lrcId = I('lrcId', 0, 'intval');
+        //if ($lrcId) {
+            $filename = WEB_ROOT_PATH .  'mp3/Unit 01 Communication 1.1.lrc';
+            $lrcContent = file_get_contents($filename);
+            echo json_encode($lrcContent);
+        //}
     }
 
     /**
