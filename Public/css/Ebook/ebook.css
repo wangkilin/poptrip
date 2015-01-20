@@ -863,3 +863,7 @@ div#searchui p {
     background:#f5f5f5;
     font:12px Verdana, Arial, Helvetica, sans-serif;
     }
+#addChapterMenu
+{
+	display:none;
+}

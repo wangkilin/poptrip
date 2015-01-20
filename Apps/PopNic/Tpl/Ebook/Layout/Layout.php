@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Language" content="zh-cn" />
 <link href="__PUBLIC__/css/Ebook/ebook.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="__PUBLIC__/js/jquery.1.8.2.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/widget.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ebook.js"></script>
 <title>{$pageTitle}</title>
 </head>
 <body class="browserscripting">

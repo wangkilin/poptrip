@@ -1,6 +1,9 @@
-
-<h2>JavaScript 基础</h2>
-<ul>
+<ul id="addChapterMenu">
+ <li class="addChapterPage">添加页面</li>
+ <li class="addChapterPage">添加链接</li>
+</ul>
+<h2 id="bookTitleOfChapterList">JavaScript 基础</h2>
+<ul class="chapterList">
 	<li><a href="../js/index.html" title="JavaScript 教程">JS 教程</a>
 		<ul>
 			<li><a href="../js/js_if_else.html" title="JavaScript If...Else">JS
