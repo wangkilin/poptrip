@@ -1,3 +1,1 @@
-<div id="foot">
- <i>Copyright &copy;</i>
-</div>
+<h2>navigation</h2>

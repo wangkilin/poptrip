@@ -1,4 +1,4 @@
-<layout name="../Layout/layout" />
+<layout name="../Layout/Layout" />
 
 <div id="content">
 	<div class="selectors">
