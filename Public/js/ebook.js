@@ -9,9 +9,13 @@
 		},
 		
 		listenEvent : function () {
-			$('#bookTitleOfChapterList').rightClick(function() {
+			$('#bookTitleOfChapterList').rightClick(function(e) {
 				$('#addChapterMenu').show();
+				
+				return false;
 			});
+			
+			return false;
 		}
 	}	
 });

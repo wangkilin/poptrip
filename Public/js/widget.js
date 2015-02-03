@@ -25,15 +25,19 @@ function autoSubmit(formElement)
 		rightClick : function(fn){
 			//调用这个方法后将禁止系统的右键菜单
 			$(this).bind('contextmenu',function(e){
+				fn(e);
 				return false;
 			});
 			//为这个对象绑定鼠标释放事件
 			$(this).mouseup(function(e){
 				//如果按下的是右键，则执行函数
 				if(3 == e.which){
-					fn(e);
+					return false;
 				}
+
+				return false;
 			});
+			return false;
 		},
 
 		/**
