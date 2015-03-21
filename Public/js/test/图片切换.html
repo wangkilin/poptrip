@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#clickToLeft
+{
+}
+#framesContainer
+{
+border: 1px solid #000;
+height: 50px;
+margin-left: 400px;
+width: 500px;
+padding:0px; 
+overflow:hidden;
+}
+#framesContainer li
+{
+border: 1px solid #999;
+clear: right;
+float: left;
+margin: 10px;
+width: 100px;
+list-style: outside none none;
+}
+#framesContainer li.on
+{
+height: 30px;
+margin: 5px 10px;
+width: 180px;
+}
+#clickToRight
+{
+}
+</style>
+<script type="text/javascript" charset="utf-8" src="./__PUBLIC__/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" charset="utf-8" src="./__PUBLIC__/js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+
+;(function($){$.extend({
+    ScrollFocus:{
+        selectors : {
+        	container : '#framesContainer',
+        	left : 'leftArrow',
+        	right: 'rightArrow'
+        },
+        trigger : {
+        	leftEnd : null,
+        	rightEnd: null,
+        },
+        /**
+         * 插件初始化
+         */
+        init : function (settings) {
+        	if (typeof settings !== 'object') {
+        		return;
+        	}
+        	// 指定选择器
+        	if (typeof settings.selectors == 'object') {
+        		this.selectors = $.extend(this.selectors, settings.selectors)
+        	}
+            // 指定触发器
+            if (typeof settings.trigger == 'object') {
+                this.trigger = $.extend(this.trigger, settings.trigger)
+            }
+        	// 将子元素原始信息载入缓存， 监听点击事件
+        	this.loadFramesData().listen();
+        },
+        /**
+         * 载入元素的原始数据
+         */
+        loadFramesData : function () {
+        	var $frames = $(this.selectors.container).children();
+        	var marginLeft, marginRight, frameWidth;
+            for (var i=0; i<$frames.length; i++) {
+            	var moveRef={};
+            	// 缓存左右空白和整体宽度
+            	moveRef.left = parseInt($frames.eq(i).css('margin-left'));
+            	moveRef.right = parseInt($frames.eq(i).css('margin-right'));
+            	moveRef.width = parseInt($frames.eq(i).width());
+            	moveRef.distance = moveRef.left + moveRef.right + moveRef.width;
+            	$frames.eq(i).data('moveRef', moveRef);
+                //$frames.eq(i).attr('distance', moveRef.distance);
+            }
+            
+            return this;
+        },
+        _reloadFramesData : function () {
+            var $frames = $(this.selectors.container).children();
+            var marginLeft, marginRight, frameWidth;
+            for (var i=0; i<$frames.length; i++) {
+                var moveRef = $frames.eq(i).data('moveRef');
+                var nowWidth = parseInt($frames.eq(i).width());
+                var widthChange = 0;
+                moveRef.width = nowWidth;
+                if (moveRef.width!=nowWidth) {
+                	widthChange = nowWidth - moveRef.Width;
+                    moveRef.width = nowWidth;
+                    moveRef.distance = moveRef.distance + widthChange;
+                	
+                }
+                $frames.eq(i).data('moveRef', moveRef);
+                //$frames.eq(i).attr('distance', moveRef.distance);
+            }
+            
+            return this;
+        },
+        /**
+         * 监听事件
+         */
+        listen : function () {
+        	//console && console.info($(this.selectors.left).length);
+        	var $that = this;
+        	$(this.selectors.left).click ( function () {
+        		$that.scrollToLeft();
+        	});
+        	$(this.selectors.right).click( function () {
+                $that.scrollToRight();
+            });
+        },
+        /**
+         * 向左移动
+         */
+        scrollToLeft : function () {
+        	this._reloadFramesData();
+        	var $frames = $(this.selectors.container).children();
+        	var containerWidth = $(this.selectors.container).width();
+        	
+        	var newMarginLeft = 0;
+        	var moveDistance=0, moveRef;
+        	//console && console.debug('clickLeft');
+        	
+        	var totalLeftItemWidth = 0;
+        	// 左侧移动， 查看是否有足够的子元素可以移动
+        	for (var i=0; i<$frames.length; i++) {
+                if (parseInt($frames.eq(i).css('margin-left'))<0) {
+                    continue;
+                }
+                totalLeftItemWidth = totalLeftItemWidth 
+                      +  parseInt($frames.eq(i).css('margin-left'))  
+                      +  parseInt($frames.eq(i).css('border-left-width'))
+                      +  parseInt($frames.eq(i).css('border-right-width'))
+                      +  parseInt($frames.eq(i).css('margin-right'))  
+                      +  parseInt($frames.eq(i).width());
+        	}
+        	if (totalLeftItemWidth <= containerWidth) {
+        	// 没有足够的子元素可以移动
+        	   if(typeof this.trigger.leftEnd == 'function') {
+        		   this.trigger.leftEnd();
+        	   }
+        		return;
+        	}
+        	// 找到位置在容器内部的第一个子元素
+        	for (var i=0; i<$frames.length; i++) {
+        		if (parseInt($frames.eq(i).css('margin-left'))<0) {
+        			continue;
+        		}
+        		moveRef = $frames.eq(i).data('moveRef');
+                //console && console.debug(moveRef);
+                // 根据第一个元素， 计算需要移动的距离
+                moveDistance = moveRef.distance;
+        		newMarginLeft = 0-moveDistance  
+        		              + parseInt($frames.eq(i).css('margin-left'))  
+                              -  parseInt($frames.eq(i).css('border-left-width'))
+                              -  parseInt($frames.eq(i).css('border-right-width'))
+        		              + 'px';
+        		// 设置元素的新偏移量
+        		$frames.eq(i).css('margin-left', newMarginLeft);
+        		
+        		break; // 找到元素， 跳出循环
+        	}
+        	// 设置找到元素左侧的所有元素的偏移
+        	for (i=i-1; i>=0; i--) {
+        		marginLeft = parseInt($frames.eq(i).css('margin-left'));
+        		newMarginLeft = parseInt('-'+moveDistance) + marginLeft 
+                             -  parseInt($frames.eq(i).css('border-left-width'))
+                             -  parseInt($frames.eq(i).css('border-right-width'))
+        		             + 'px';
+        		$frames.eq(i).css('margin-left', newMarginLeft);
+        	}
+        },
+        
+        /**
+         * 向右移动
+         */
+        scrollToRight : function () {
+        	//this._reloadFramesData();
+            var $frames = $(this.selectors.container).children();
+            var containerWidth = $(this.selectors.container).width();
+            
+            var newMarginLeft = 0;
+            var marginLeft, marginRight, frameWidth, moveRef={}, moveDistance=0;
+            // 从后往前找第一个在容器左侧的元素
+            for (var i=$frames.length-1; i>=0; i--) {
+                if (parseInt($frames.eq(i).css('margin-left'))>=0) {
+                    continue;
+                }
+                // 找到对应元素， 将此元素移动到容器内
+                moveRef = $frames.eq(i).data('moveRef');
+                console.debug(moveRef.left + ' '+ moveRef.right+' ' + moveRef.width);
+                moveDistance = moveRef.left + moveRef.right + moveRef.width 
+                +  parseInt($frames.eq(i).css('border-left-width'))
+                +  parseInt($frames.eq(i).css('border-right-width'));
+                break;
+            }
+            // 容器左侧已没有元素
+            if (typeof moveRef.left == 'undefined') {
+            	console && console.info('can not go to right');
+            	return;
+            }
+            // 将找到元素及后面的所有元素的偏移， 恢复初始位置
+            for (var j=i; j<$frames.length; j++) {
+            	var thisMoveRef = $frames.eq(j).data('moveRef');
+                $frames.eq(j).css('margin-left', thisMoveRef.left + 'px');
+            }
+            // 将找到元素左侧的所有元素， 向右侧移动对应距离
+            for (i=i-1; i>=0; i--) {
+                marginLeft = parseInt($frames.eq(i).css('margin-left'));
+                newMarginLeft = moveDistance + marginLeft + 'px';
+                console && console.info(marginLeft + ' ' + moveDistance);
+                $frames.eq(i).css('margin-left', newMarginLeft);
+            }
+        	
+        }
+    }
+});
+
+}) (jQuery);
+
+$(function () {
+
+	var leftEnd = function () {
+		alert('left end');
+	}
+	$.ScrollFocus.init({selectors:{left : '#clickToLeft', right: '#clickToRight'},
+		                trigger: {leftEnd : leftEnd}});
+	
+	$('#framesContainer>li').click(function () {
+		$(this).siblings().removeClass('on');
+		$(this).addClass('on');
+	});
+
+});
+</script>
+</head>
+<body>
+<div>
+  <span id="clickToLeft">Left</span>
+  <ul id="framesContainer">
+    <li class="" style="">a</li>
+    <li class="on" style="">b</li>
+    <li class="">c</li>
+    <li class="">d</li>
+    <li class="">e</li>
+    <li class="">f</li>
+    <li class="">g</li>
+    <li class="">h</li>
+    <li class="">i</li>
+    <li class="">j</li>
+    <li class="">k</li>
+    <li class="">l</li>
+    <li class="">m</li>
+  </ul>
+  <span id="clickToRight">Right</span>
+</div>
+</body>
+</html>
