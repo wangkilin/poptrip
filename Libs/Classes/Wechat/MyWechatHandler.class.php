@@ -51,6 +51,13 @@ class TestHandler
             $msgId = rand(0, 7);
             $msg = '收到点击：'. $msgPool[$msgId];
         } else {
+            switch ($request->getRequest('eventkey')) {
+                case 'about_contact':
+                    break;
+
+                default:
+                    break;
+            }
             $msg = '收到点击：' . $request->getRequest('eventkey');
         }
 

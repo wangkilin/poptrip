@@ -49,7 +49,8 @@ echo $client->setRawData(ConvertFormat::json_encode($menuJsonData))
 $requesterClient = new WechatRequester(WECHAT_APP_ID, WECHAT_APP_SECRET, PUBLIC_PLATFORM_TOKEN);
 $accessToken = $requesterClient->getAccessToken();
 $result = $requesterClient->setAccessToken($accessToken)
-                          ->setMenu($menuJsonData);
-
+                          ->getMenu($menuJsonData);
+                          //->setMenu($menuJsonData);
+var_dump($result);
 var_dump($requesterClient->getSubscriberList());
 var_dump($requesterClient->getSubscriber("oigJdt60R-EfOtb7WYkwZOjK5Fxo"));
