@@ -11,6 +11,7 @@ class WechatRequester extends WechatAbstract
     protected $urlList = array(
         'GetAccessToken' => 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s',
         'SetMenu' => 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s',
+        'GetMenu' => 'https://api.weixin.qq.com/cgi-bin/menu/get?access_token=%s',
         'GetSubscriber' => 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=zh_CN',
         'GetSubscriberList'=> 'https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s'
         );
@@ -47,8 +48,9 @@ class WechatRequester extends WechatAbstract
                 $url = sprintf($this->urlList['GetAccessToken'], $this->appId, $this->appSecret);
                 break;
 
+            case 'GetMenu':
             case 'SetMenu':
-                $url = sprintf($this->urlList['SetMenu'], $this->accessToken);
+                $url = sprintf($this->urlList[$requestType], $this->accessToken);
                 break;
 
             default :
@@ -102,6 +104,7 @@ class WechatRequester extends WechatAbstract
         $url = $this->getRequestUrl('SetMenu');
         $response = $this->getHttpClient()
                          ->setUri($url)
+                         ->setRawData(ConvertFormat::json_encode($menuList))
                          ->request('POST');
         if(200!=$response->getStatus()) {
             return $result;
@@ -110,6 +113,30 @@ class WechatRequester extends WechatAbstract
         if(isset($response['errcode'])) {
             if(0==$response['errcode']) {
                 $result = true;
+            } else {
+                $this->errorDesc = "Error: code(".$response['errcode'].") message(".$response['errmsg'].")";
+            }
+        }
+
+        return $result;
+    }
+
+    public function getMenu ($menuList)
+    {
+        $result = false;
+        $url = $this->getRequestUrl('GetMenu');
+        echo $url;
+        $response = $this->getHttpClient()
+                         ->setUri($url)
+                         ->request('GET');
+        if(200!=$response->getStatus()) {
+            return $result;
+        }
+        $response = ConvertFormat::json_decode($response->getBody(),true);
+        echo print_r($response,true);
+        if(isset($response['errcode'])) {
+            if(0==$response['errcode']) {
+                $result = $response;
             } else {
                 $this->errorDesc = "Error: code(".$response['errcode'].") message(".$response['errmsg'].")";
             }
