@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../jquery.drawLine.js"></script>
+<script src="../jquery.1.8.2.js"></script>
+<script>
+$(function () {
+	var points = [{200,200}, {350,350}, {50, 350}];
+	$.ConvasDrawLine.init(points, {containerId:'canvasId'}).drawLine();
+});
+</script>
+</head>
+<body>
+<canvas height="500px" width="500px" id="canvasId"></canvas>
+</body>
+</html>
