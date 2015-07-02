@@ -2,7 +2,7 @@
  * 
  */
 ;$.extend({
-ConvasDrawLine : {
+CanvasDrawLine : {
 	pointsList : [],    // 画线基准点。 格式： {x:0, y:0, color:'#000, trigger:null}
 	options : {
 		isClose : false // 是否闭合： 决定是否启用  context.closePath();
@@ -10,14 +10,16 @@ ConvasDrawLine : {
 	  , speedSlow : 200 // 400 毫秒
 	  , speedFast : 100 // 100 毫秒
 	  , containerId : 'canvasContainer' // 画布容器
-      , color : '#000', // 默认颜色
+      , color : '#000' // 默认颜色
+      , lineWidth : 1
 	},
 	speedSlow : 1,
 	
 	init: function (pointsList, options) {
-		alert('helo');
 		this.pointsList = pointsList;
 		this.options = $.extend(this.options, options);
+		
+		return this;
 	},
 	
 	_getCanvas : function () {
@@ -26,11 +28,14 @@ ConvasDrawLine : {
 	
 	logInfo : function (msg) {
 		console ? console.info(msg) : null;
-		alert(msg);
-	}
+	},
+	
+	_drawLine : function (pointsList) {
+		
+	},
 	
 	drawLine : function () {
-		var container = document.getElementBy(this.options.containerId);
+		var container = document.getElementById(this.options.containerId);
 		if (! container) {
 			this.logInfo('container is not found');
 			return null;
@@ -45,15 +50,19 @@ ConvasDrawLine : {
 			return null;
 		}
 
-		var x, y;
+		var x, y, color;
 		var canvasContext = container.getContext('2d');
+		canvasContext.strokeStyle = this.options.color;
+		canvasContext.lineWidth = this.options.lineWidth;
 		canvasContext.beginPath();
-		for (var i=0; i<pointsList.length; i++) {
-			x = pointsList[i].x;
-			y = pointsList[i].y;
+		for (var i=0; i<this.pointsList.length; i++) {
+			x = this.pointsList[i].x;
+			y = this.pointsList[i].y;
 			0===i ? canvasContext.moveTo(x, y) : canvasContext.lineTo(x, y);
 		}
 		this.options.isClose ? canvasContext.closePath() : null;
 		canvasContext.stroke();
-	}
+	},
+	
+	
 }});

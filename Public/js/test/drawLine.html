@@ -3,12 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="../jquery.drawLine.js"></script>
 <script src="../jquery.1.8.2.js"></script>
+<script src="../jquery.drawLine.js"></script>
 <script>
 $(function () {
-	var points = [{200,200}, {350,350}, {50, 350}];
-	$.ConvasDrawLine.init(points, {containerId:'canvasId'}).drawLine();
+	var points = [{x:60, y:300}, {x:160, y:300}, {x:190,y:350}, {x:400, y:350}];
+	$.CanvasDrawLine.init(points, {containerId:'canvasId',
+		                           color:'#f00',
+		                           lineWidth : 1})
+		            .drawLine();
 });
 </script>
 </head>
